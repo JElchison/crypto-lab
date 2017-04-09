@@ -1,10 +1,11 @@
-1. scrape password from pcap
-    * HTTP POST login, repeated every 30s from localhost
-    * password stored in bcrypt in file in /home/ubuntu/
-        * or curl command line
+1. scrape plain-text password from web traffic
     * HINT:  tcpdump on [interface]
-    * ACTUAL:  sudo tcpdump -A -i [interface] | grep password
-    * LEARN:  use TLS
+    * ACTUAL:
+        netstat -npl | grep 5000
+        ps ax | grep python
+        cat server.py
+        sudo tcpdump -A -i [interface] tcp port 5000 | grep password=
+    * LEARN:  Always use TLS
     * FLAG:  [next port number]
     
 2. scrape password from file

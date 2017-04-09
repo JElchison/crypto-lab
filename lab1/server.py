@@ -78,3 +78,7 @@ def logout():
 @login_manager.unauthorized_handler
 def unauthorized_handler():
     return 'Unauthorized'
+    
+    
+if __name__ == '__main__':
+    app.run()
