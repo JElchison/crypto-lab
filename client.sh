@@ -1,4 +1,16 @@
 #!/bin/bash
 
-watch "curl -v -s -X POST -d 'password=Always_use_TLS' http://localhost:5000/"
-#watch "curl -v -s -k -X POST -d 'password=Always_use_TLS' https://localhost:5000/"
+set -eufx -o pipefail
+
+HOST=$1
+PORT=$2
+HTTPS=$3
+PASSWORD=$4
+
+
+if [[ $HTTPS = "True" ]]; then
+    watch "curl -v -s -k -X POST -d 'password=$PASSWORD' https://$HOST:$PORT/"
+else
+    watch "curl -v -s -X POST -d 'password=$PASSWORD' http://$HOST:$PORT/"
+fi
+

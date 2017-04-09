@@ -5,11 +5,13 @@ import flask
 import flask_login
 import ssl
 import bcrypt
+import hashlib
+
 
 # adapted from https://github.com/maxcountryman/flask-login/blob/03bb7ffd5722f5ff8626d625b0e4941bda66b681/README.md
 
 # default options
-ip = '0.0.0.0'
+host = '0.0.0.0'
 port = 5000
 mode = 'bcrypt'
 https = True
@@ -25,12 +27,24 @@ USERNAME = 'foo@bar.tld'
 
 
 def check_password(password):
-    hashed = None
+    file_password = None
     with open('password.db', 'r') as f:
-        hashed = f.readline().strip()
-        
-    return bcrypt.checkpw(password.encode('utf8'), hashed)
-  
+        file_password = f.readline().strip()
+
+    if mode == "bcrypt":
+        return bcrypt.checkpw(password.encode('utf8'), file_password)
+
+    elif mode == "md5":
+        m = hashlib.md5()
+        m.update(password)
+        return m.hexdigest() == file_password
+
+    elif mode == "plaintext":
+        return password == file_password
+
+    else:
+        return False
+
 
 class User(flask_login.UserMixin):
     pass
@@ -88,22 +102,22 @@ def logout():
 @login_manager.unauthorized_handler
 def unauthorized_handler():
     return 'Unauthorized'
-    
-    
+
+
 if __name__ == '__main__':
     if len(sys.argv) >= 2:
-        ip = sys.argv[1]
+        host = sys.argv[1]
     if len(sys.argv) >= 3:
         port = int(sys.argv[2])
     if len(sys.argv) >= 4:
         mode = sys.argv[3]
     if len(sys.argv) >= 5:
         https = (sys.argv[4] == 'True')
-        
+
     if https:
         context = ssl.create_default_context(purpose=ssl.Purpose.CLIENT_AUTH)
         context.load_cert_chain(certfile="server.crt", keyfile="server.key")
     else:
         context = None
-        
-    app.run(host=ip, port=port, debug=False, ssl_context=context)
+
+    app.run(host=host, port=port, debug=False, ssl_context=context)
