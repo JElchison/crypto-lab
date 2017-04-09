@@ -36,8 +36,6 @@ def request_loader(request):
     user = User()
     user.id = USERNAME
 
-    # DO NOT ever store passwords in plaintext and always compare password
-    # hashes using constant-time comparison!
     user.is_authenticated = bcrypt.checkpw(request.form['password'].encode('utf8'), hashed)
 
     return user
@@ -81,4 +79,4 @@ def unauthorized_handler():
     
     
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0')
