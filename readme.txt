@@ -3,6 +3,7 @@
     * password stored in bcrypt in file in /home/ubuntu/
         * or curl command line
     * HINT:  tcpdump on [interface]
+    * ACTUAL:  sudo tcpdump -A -i [interface] | grep password
     * LEARN:  use TLS
     * FLAG:  [next port number]
     
