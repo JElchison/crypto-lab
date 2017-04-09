@@ -38,7 +38,7 @@ def request_loader(request):
 
     # DO NOT ever store passwords in plaintext and always compare password
     # hashes using constant-time comparison!
-    user.is_authenticated = bcrypt.checkpw(request.form['pw'].encode('utf8'), hashed)
+    user.is_authenticated = bcrypt.checkpw(request.form['password'].encode('utf8'), hashed)
 
     return user
 
@@ -48,13 +48,13 @@ def login():
     if flask.request.method == 'GET':
         return '''
                <form method='POST'>
-                <input type='password' name='pw' id='pw' placeholder='password'></input>
+                <input type='password' name='password' id='password' placeholder='password'></input>
                 <input type='submit' name='submit'></input>
                </form>
                '''
 
     email = USERNAME
-    if bcrypt.checkpw(flask.request.form['pw'].encode('utf8'), hashed):
+    if bcrypt.checkpw(flask.request.form['password'].encode('utf8'), hashed):
         user = User()
         user.id = USERNAME
         flask_login.login_user(user)
