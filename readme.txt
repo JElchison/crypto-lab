@@ -12,8 +12,8 @@
     * HTTPS POST login, repeated every 30s from localhost (red herring)
     * password stored in plain-text in file in /home/student/password.txt
     * HINT:  You'll have no luck with HTTPS
-    * LEARN:  Never store plain-text passwords
-    * FLAG:  Never store plain-text passwords
+    * LEARN:  Always compare password hashes using constant-time comparison
+    * FLAG:  Always compare password hashes using constant-time comparison
 
 3. attack timing of password checking
     * password stored in plain-text in file in /home/ubuntu/
