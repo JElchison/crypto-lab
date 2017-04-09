@@ -6,14 +6,14 @@
         cat server.py
         sudo tcpdump -A -i [interface] tcp port 5000 | grep password=
     * LEARN:  Always use TLS
-    * FLAG:  [next port number]
+    * FLAG:  Always_use_TLS
     
 2. scrape password from file
     * HTTPS POST login, repeated every 30s from localhost (red herring)
     * password stored in plain-text in file in /home/student/password.txt
     * HINT:  You'll have no luck with HTTPS
-    * LEARN:  don't store plain-text passwords
-    * FLAG:  [next port number]
+    * LEARN:  Never store plain-text passwords
+    * FLAG:  Never store plain-text passwords
 
 3. attack timing of password checking
     * password stored in plain-text in file in /home/ubuntu/

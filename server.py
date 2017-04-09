@@ -1,23 +1,36 @@
+#!/usr/bin/env python2
+
+import sys
 import flask
 import flask_login
+import ssl
 import bcrypt
 
 # adapted from https://github.com/maxcountryman/flask-login/blob/03bb7ffd5722f5ff8626d625b0e4941bda66b681/README.md
+
+# default options
+ip = '0.0.0.0'
+port = 5000
+mode = 'bcrypt'
+https = True
 
 
 app = flask.Flask(__name__)
 app.secret_key = 'super secret string'  # Change this!
 
 login_manager = flask_login.LoginManager()
-
 login_manager.init_app(app)
 
 USERNAME = 'foo@bar.tld'
 
 
-with open('hash.txt', 'r') as f:
-    hashed = f.readline().strip()
-
+def check_password(password):
+    hashed = None
+    with open('password.db', 'r') as f:
+        hashed = f.readline().strip()
+        
+    return bcrypt.checkpw(password.encode('utf8'), hashed)
+  
 
 class User(flask_login.UserMixin):
     pass
@@ -36,7 +49,7 @@ def request_loader(request):
     user = User()
     user.id = USERNAME
 
-    user.is_authenticated = bcrypt.checkpw(request.form['password'].encode('utf8'), hashed)
+    user.is_authenticated = check_password(request.form['password'])
 
     return user
 
@@ -51,8 +64,7 @@ def login():
                </form>
                '''
 
-    email = USERNAME
-    if bcrypt.checkpw(flask.request.form['password'].encode('utf8'), hashed):
+    if check_password(flask.request.form['password']):
         user = User()
         user.id = USERNAME
         flask_login.login_user(user)
@@ -79,4 +91,19 @@ def unauthorized_handler():
     
     
 if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+    if len(sys.argv) >= 2:
+        ip = sys.argv[1]
+    if len(sys.argv) >= 3:
+        port = int(sys.argv[2])
+    if len(sys.argv) >= 4:
+        mode = sys.argv[3]
+    if len(sys.argv) >= 5:
+        https = (sys.argv[4] == 'True')
+        
+    if https:
+        context = ssl.create_default_context(purpose=ssl.Purpose.CLIENT_AUTH)
+        context.load_cert_chain(certfile="server.crt", keyfile="server.key")
+    else:
+        context = None
+        
+    app.run(host=ip, port=port, debug=False, ssl_context=context)
