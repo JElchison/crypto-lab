@@ -1,6 +1,6 @@
-1. scrape plain-text password from web traffic
+1. sniff plain-text password from web traffic
     * HINT:  tcpdump on [interface]
-    * ACTUAL:
+    * ACTUAL STEPS:
         netstat -npl | grep 5000
         ps ax | grep python
         cat server.py

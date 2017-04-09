@@ -64,7 +64,7 @@ def login():
 @app.route('/protected')
 @flask_login.login_required
 def protected():
-    return 'Logged in as: ' + flask_login.current_user.id
+    return "Congratulations!  You've completed part 1 of the lab.  For part 2, see TCP port XXXX."
 
 
 @app.route('/logout')
