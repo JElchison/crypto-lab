@@ -5,7 +5,6 @@ set -eufx -o pipefail
 HOST=$1
 PORT=$2
 HTTPS=$3
-PASSWORD=$4
 
 
 if [[ $HTTPS = "True" ]]; then

@@ -1,5 +1,9 @@
 FROM ubuntu
 
+ARG PASSWORD
+ARG MODE=bcrypt
+ARG HTTPS=True
+
 RUN apt-get update && apt-get install -y \
     build-essential \
     libffi-dev \
@@ -12,27 +16,22 @@ RUN pip install flask \
     flask-login \
     bcrypt
 
-ENV HOST localhost
-ENV PORT 5001
-ENV MODE plaintext
-ENV HTTPS False
-ENV PASSWORD Password1
-
-ENV CLIENT client.sh
-ENV SERVER server.py
+ENV PORT 5000
+ENV SERVER_SCRIPT server.py
+ENV CERT_FILE server.crt
+ENV KEY_FILE server.key
 ENV PASSWORD_FILE password.db
-
 ENV TARGET_DIR /opt/crypto-lab/
-
-EXPOSE ${PORT}
 
 RUN mkdir -p ${TARGET_DIR}
 WORKDIR ${TARGET_DIR}
 
 RUN echo ${PASSWORD} > ${PASSWORD_FILE}
 
-COPY ${SERVER} .
-COPY ${CLIENT} .
+COPY ${SERVER_SCRIPT} .
+COPY ${CERT_FILE} .
+COPY ${KEY_FILE} .
 
-CMD ./${SERVER} 0.0.0.0 ${PORT} ${MODE} ${HTTPS}
-#CMD ./${CLIENT} ${HOST} ${PORT} ${HTTPS} ${PASSWORD}
+EXPOSE ${PORT}
+
+CMD ./${SERVER_SCRIPT} ${MODE} ${HTTPS}
