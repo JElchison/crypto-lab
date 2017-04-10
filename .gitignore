@@ -127,3 +127,4 @@ nohup.out
 #
 
 *-env/
+password*.db
