@@ -13,6 +13,7 @@ import hashlib
 # default options
 host = '0.0.0.0'
 port = 5000
+password_file = 'password.db'
 mode = 'bcrypt'
 https = True
 
@@ -27,20 +28,20 @@ USERNAME = 'foo@bar.tld'
 
 
 def check_password(password):
-    file_password = None
-    with open('password.db', 'r') as f:
-        file_password = f.readline().strip()
+    password_from_file = None
+    with open(password_file, 'r') as f:
+        password_from_file = f.readline().strip()
 
     if mode == "bcrypt":
-        return bcrypt.checkpw(password.encode('utf8'), file_password)
+        return bcrypt.checkpw(password.encode('utf8'), password_from_file)
 
     elif mode == "md5":
         m = hashlib.md5()
         m.update(password)
-        return m.hexdigest() == file_password
+        return m.hexdigest() == password_from_file
 
     elif mode == "plaintext":
-        return password == file_password
+        return password == password_from_file
 
     else:
         return False
@@ -106,9 +107,11 @@ def unauthorized_handler():
 
 if __name__ == '__main__':
     if len(sys.argv) >= 2:
-        mode = sys.argv[1]
+        password_file = sys.argv[1]
     if len(sys.argv) >= 3:
-        https = (sys.argv[2] == 'True')
+        mode = sys.argv[2]
+    if len(sys.argv) >= 4:
+        https = (sys.argv[3] == 'True')
 
     if https:
         context = ssl.create_default_context(purpose=ssl.Purpose.CLIENT_AUTH)
