@@ -128,3 +128,5 @@ nohup.out
 
 *-env/
 password*.db
+server.crt
+server.key
