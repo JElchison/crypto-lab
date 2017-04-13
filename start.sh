@@ -3,7 +3,15 @@
 set -eufx -o pipefail
 
 
+CERT_FILE=server.crt
+KEY_FILE=server.key
+
+
 pushd server
+
+if [[ ! -f $CERT_FILE || ! -f $KEY_FILE ]]; then
+  openssl req -x509 -days 365 -nodes -newkey rsa:2048 -keyout $KEY_FILE -out $CERT_FILE
+fi
 
 docker build --build-arg PASSWORD="Always_use_TLS" --build-arg PASSWORD_FILE="/opt/crypto-lab/shared/password1.db" --build-arg MODE=bcrypt --build-arg HTTPS=False -t lab1_server .
 #docker build --build-arg PASSWORD="Always store passwords hashed and salted (never plain-text)" --build-arg PASSWORD_FILE="/opt/crypto-lab/shared/password2.db" --build-arg MODE=plaintext --build-arg HTTPS=True -t lab2_server .
