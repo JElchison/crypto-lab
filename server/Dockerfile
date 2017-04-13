@@ -1,9 +1,27 @@
 FROM ubuntu
 
+# required arguments
 ARG PASSWORD
 ARG PASSWORD_FILE
+
+# optional arguments
 ARG MODE=bcrypt
 ARG HTTPS=True
+
+# uncommon arguments
+ARG PORT=5000
+
+# filenames
+ARG SERVER_SCRIPT=server.py
+ARG CERT_FILE=server.crt
+ARG KEY_FILE=server.key
+ARG TOOLS_DIR=tools
+ARG TOOL_GENERATE_PASSWORD_HASH=generate_password_hash.py
+
+# destination paths
+ARG TARGET_DIR=/opt/crypto-lab
+ARG SHARED_DIR=${TARGET_DIR}/shared
+
 
 RUN apt-get update && apt-get install -y \
     build-essential \
@@ -13,25 +31,18 @@ RUN apt-get update && apt-get install -y \
 
 RUN pip install --upgrade pip
 
-RUN pip install flask \
-    flask-login \
-    bcrypt
+RUN pip install \
+    bcrypt \
+    flask \
+    flask-login
 
-ENV PORT 5000
-ENV SERVER_SCRIPT server.py
-ENV CERT_FILE server.crt
-ENV KEY_FILE server.key
-ENV TOOLS_DIR tools
-ENV GENERATE_HASH_TOOL generate_password_hash.py
-ENV TARGET_DIR /opt/crypto-lab
-ENV SHARED_DIR ${TARGET_DIR}/shared
 
 RUN mkdir -p ${SHARED_DIR}
 WORKDIR ${TARGET_DIR}
 
-COPY ${TOOLS_DIR} .
-RUN ${TOOLS_DIR}/${GENERATE_HASH_TOOL} ${MODE} ${PASSWORD} > ${PASSWORD_FILE}
-RUN rm -rf ${TOOLS_DIR}
+COPY generate_password_hash.py ${TARGET_DIR}
+#RUN ${TOOLS_DIR}/${TOOL_GENERATE_PASSWORD_HASH} ${MODE} ${PASSWORD} > ${PASSWORD_FILE}
+#RUN rm -rf ${TOOLS_DIR}
 
 COPY ${SERVER_SCRIPT} ${SHARED_DIR}
 COPY ${CERT_FILE} ${SHARED_DIR}
