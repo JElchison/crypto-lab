@@ -1,10 +1,9 @@
 1. sniff plain-text password from web traffic
-    * HINT:  tcpdump on [interface]
+    * HINT:  tcpdump on docker0
     * ACTUAL STEPS:
-        netstat -npl | grep 5001
-        ps ax | grep python
-        cat server.py
-        sudo tcpdump -A -i docker0 tcp port 5001 | grep password=
+        ps ax | grep 5001
+        less /opt/crypto-lab/shared/server.py
+        tcpdump -A -i docker0 tcp port 5001 | grep password=
     * LEARN:  Always use TLS
     * FLAG:  Always_use_TLS
     
