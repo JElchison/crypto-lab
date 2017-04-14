@@ -45,3 +45,12 @@ ubuntu = teacher
 student
     * cannot sudo
     * can access tcpdump interface (https://askubuntu.com/questions/530920/tcpdump-permissions-problem)
+    
+======
+
+VM
+* Ubuntu
+* sudo ufw enable
+* sudo ufw allow ssh
+* Install Docker
+* sudo ./start.sh
