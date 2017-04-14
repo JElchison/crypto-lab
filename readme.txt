@@ -1,10 +1,10 @@
 1. sniff plain-text password from web traffic
     * HINT:  tcpdump on [interface]
     * ACTUAL STEPS:
-        netstat -npl | grep 5000
+        netstat -npl | grep 5001
         ps ax | grep python
         cat server.py
-        sudo tcpdump -A -i [interface] tcp port 5000 | grep password=
+        sudo tcpdump -A -i docker0 tcp port 5001 | grep password=
     * LEARN:  Always use TLS
     * FLAG:  Always_use_TLS
     

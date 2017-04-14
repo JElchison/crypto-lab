@@ -1,15 +1,15 @@
 FROM ubuntu
 
-ARG PASSWORD
-ARG HOST
-ARG HTTPS=True
+# filenames
+ARG CLIENT_SCRIPT=client.sh
 
-ENV PORT 5000
-ENV CLIENT_SCRIPT client.sh
-ENV TARGET_DIR /opt/crypto-lab/
+# destination paths
+ARG TARGET_DIR=/opt/crypto-lab
+
+RUN apt-get update && apt-get install -y \
+    curl
+
 
 WORKDIR ${TARGET_DIR}
 
 COPY ${CLIENT_SCRIPT} .
-
-CMD PASSWORD=${PASSWORD} ./${CLIENT_SCRIPT} ${HOST} ${PORT} ${HTTPS}

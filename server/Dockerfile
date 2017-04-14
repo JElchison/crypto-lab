@@ -8,9 +8,6 @@ ARG MODE=bcrypt
 ARG PORT=5000
 
 # filenames
-ARG SERVER_SCRIPT=server.py
-ARG CERT_FILE=server.crt
-ARG KEY_FILE=server.key
 ARG TOOL_GENERATE_PASSWORD_HASH=generate_password_hash.py
 
 # destination paths
