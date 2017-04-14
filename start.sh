@@ -2,9 +2,13 @@
 
 set -eufx -o pipefail
 
-
+SERVER_SCRIPT=server.py
 CERT_FILE=server.crt
 KEY_FILE=server.key
+TOOL_GENERATE_PASSWORD_HASH=generate_password_hash.py
+
+TARGET_DIR=/opt/crypto-lab
+SHARED_DIR=${TARGET_DIR}/shared
 
 
 pushd server
@@ -13,15 +17,44 @@ if [[ ! -f $CERT_FILE || ! -f $KEY_FILE ]]; then
   openssl req -x509 -days 365 -nodes -newkey rsa:2048 -keyout $KEY_FILE -out $CERT_FILE
 fi
 
-docker build --build-arg PASSWORD="Always_use_TLS" --build-arg PASSWORD_FILE="/opt/crypto-lab/shared/password1.db" --build-arg MODE=bcrypt --build-arg HTTPS=False -t lab1_server .
-#docker build --build-arg PASSWORD="Always store passwords hashed and salted (never plain-text)" --build-arg PASSWORD_FILE="/opt/crypto-lab/shared/password2.db" --build-arg MODE=plaintext --build-arg HTTPS=True -t lab2_server .
-#docker build --build-arg PASSWORD="Always compare password hashes using constant-time comparison" --build-arg PASSWORD_FILE="/opt/crypto-lab/password3.db" --build-arg MODE=plaintext --build-arg HTTPS=True -t lab3_server .
-#docker build --build-arg PASSWORD="bcrypt is the best (current) method for password storage" --build-arg PASSWORD_FILE="/opt/crypto-lab/shared/password4.db" --build-arg MODE=md5 --build-arg HTTPS=True -t lab4_server .
+rm -rf $TARGET_DIR
+mkdir -p $SHARED_DIR
 
-docker run -d -p 5001:5000 -v /opt/crypto-lab/shared:/opt/crypto-lab/shared:ro lab1_server
-#docker run -d -p 5002:5000 -v /opt/crypto-lab/shared:/opt/crypto-lab/shared:ro lab2_server
-#docker run -d -p 5003:5000 -v /opt/crypto-lab/shared:/opt/crypto-lab/shared:ro lab3_server
-#docker run -d -p 5004:5000 -v /opt/crypto-lab/shared:/opt/crypto-lab/shared:ro lab4_server
+cp -v $SERVER_SCRIPT $SHARED_DIR
+chmod +x $SHARED_DIR/$SERVER_SCRIPT
+cp -v $CERT_FILE $SHARED_DIR
+cp -v $KEY_FILE $SHARED_DIR
+
+
+MODE=bcrypt
+PASSWORD="Always_use_TLS"
+PASSWORD_FILE="$SHARED_DIR/password1.db"
+HTTPS=False
+./$TOOL_GENERATE_PASSWORD_HASH $MODE $PASSWORD > $PASSWORD_FILE
+docker build --build-arg MODE=$MODE -t lab1_server .
+docker run -d -p 5001:5000 -v $SHARED_DIR:$SHARED_DIR:ro lab1_server $SHARED_DIR/$SERVER_SCRIPT $PASSWORD_FILE $MODE $HTTPS
+
+#MODE=plaintext
+#PASSWORD="Always store passwords hashed and salted (never plain-text)"
+#PASSWORD_FILE="$SHARED_DIR/password2.db"
+#HTTPS=True
+#./$TOOL_GENERATE_PASSWORD_HASH $MODE $PASSWORD > $PASSWORD_FILE
+#docker build --build-arg MODE=$MODE -t lab2_server .
+#docker run -d -p 5002:5000 -v $SHARED_DIR:$SHARED_DIR:ro lab2_server $SHARED_DIR/$SERVER_SCRIPT $PASSWORD_FILE $MODE $HTTPS
+
+#MODE=plaintext
+#PASSWORD="Always compare password hashes using constant-time comparison"
+#HTTPS=True
+#docker build --build-arg PASSWORD="$PASSWORD" --build-arg PASSWORD_FILE="$TARGET_DIR/password3.db" --build-arg MODE=$MODE -t lab3_server .
+#docker run -d -p 5003:5000 -v $SHARED_DIR:$SHARED_DIR:ro lab3_server $SHARED_DIR/$SERVER_SCRIPT $PASSWORD_FILE $MODE $HTTPS
+
+#MODE=md5
+#PASSWORD="bcrypt is the best (current) method for password storage"
+#PASSWORD_FILE="$SHARED_DIR/password4.db"
+#HTTPS=True
+#./$TOOL_GENERATE_PASSWORD_HASH $MODE $PASSWORD > $PASSWORD_FILE
+#docker build --build-arg MODE=$MODE -t lab4_server .
+#docker run -d -p 5004:5000 -v $SHARED_DIR:$SHARED_DIR:ro lab4_server $SHARED_DIR/$SERVER_SCRIPT $PASSWORD_FILE $MODE $HTTPS
 
 popd
 
