@@ -1,6 +1,7 @@
 #!/usr/bin/env python2
 
 import sys
+import os
 import flask
 import flask_login
 import ssl
@@ -91,7 +92,7 @@ def login():
 @app.route('/protected')
 @flask_login.login_required
 def protected():
-    return "Congratulations!  You've completed part 1 of the lab.  For part 2, see TCP port XXXX."
+    return "Congratulations!  You've completed this part of the lab."
 
 
 @app.route('/logout')
@@ -106,6 +107,8 @@ def unauthorized_handler():
 
 
 if __name__ == '__main__':
+    cwd = os.path.dirname(os.path.realpath(__file__))
+    
     if len(sys.argv) >= 2:
         password_file = sys.argv[1]
     if len(sys.argv) >= 3:
@@ -115,7 +118,7 @@ if __name__ == '__main__':
 
     if https:
         context = ssl.create_default_context(purpose=ssl.Purpose.CLIENT_AUTH)
-        context.load_cert_chain(certfile="server.crt", keyfile="server.key")
+        context.load_cert_chain(certfile=cwd + "/server.crt", keyfile=cwd + "/server.key")
     else:
         context = None
 
