@@ -44,6 +44,17 @@ def check_password(password):
     elif mode == "plaintext":
         return password == password_from_file
 
+    elif mode == "plaintext_time":
+        for index in range(max(len(string1), len(string2))):
+            # simulate work with a sleep
+            time.sleep(0.05)
+            try:
+                if string1[index] != string2[index]:
+                    return False
+            except IndexError:
+                return False
+        return True
+
     else:
         return False
 

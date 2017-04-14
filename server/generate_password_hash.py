@@ -19,5 +19,8 @@ elif mode == "md5":
 elif mode == "plaintext":
     print password
 
+elif mode == "plaintext_time":
+    print password
+
 else:
     sys.exit(1)
