@@ -69,7 +69,7 @@ adduser --disabled-password --gecos "" student || true
 # setup student SSH key
 su student --login -c 'mkdir ~/.ssh'
 su student --login -c 'chmod 700 ~/.ssh'
-su student --login -c 'ssh-keygen -t ed25519 -N "" -f /home/student/.ssh/id_ed25519'
+su student --login -c 'ssh-keygen -t ed25519 -f /home/student/.ssh/id_ed25519'
 
 
 #
