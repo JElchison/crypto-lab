@@ -50,7 +50,5 @@ student
 
 VM
 * Ubuntu
-* sudo ufw enable
-* sudo ufw allow ssh
-* Install Docker
 * sudo ./start.sh
+* copy SSH key to local
