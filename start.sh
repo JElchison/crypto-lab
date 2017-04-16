@@ -2,6 +2,8 @@
 
 set -eufx -o pipefail
 
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
 
 #
 # install things
@@ -67,8 +69,8 @@ ufw --force enable
 adduser --disabled-password --gecos "" student || true
 
 # setup student SSH key
-if [[ ! -f /home/student/.ssh/id_ed25519 ]]; then
-  su student --login -c 'mkdir ~/.ssh'
+if [[ ! -f /home/student/.ssh/student ]]; then
+  su student --login -c 'mkdir ~/.ssh' || true
   su student --login -c 'chmod 700 ~/.ssh'
   su student --login -c 'touch ~/.ssh/authorized_keys'
   su student --login -c 'chmod 600 ~/.ssh/authorized_keys'
@@ -81,7 +83,7 @@ fi
 # build client
 #
 
-pushd client
+pushd $SCRIPT_DIR/client
 docker build -t lab_client .
 popd
 
@@ -90,7 +92,7 @@ popd
 # server operations
 #
 
-pushd server
+pushd $SCRIPT_DIR/server
 
 # build server
 docker build -t lab_server .
