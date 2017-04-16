@@ -3,7 +3,7 @@
     * ACTUAL STEPS:
         ps ax | grep 5001
         less /opt/crypto-lab/shared/server.py
-        tcpdump -A -i docker0 tcp port 5001 | grep password=
+        sudo tcpdump -A -i docker0 tcp port 5001 | grep password=
     * LEARN:  Always use TLS
     * FLAG :  Always_use_TLS
     
@@ -30,7 +30,7 @@
     * password stored in plain-text in file in /home/student/hash.txt unsalted with MD5("password1")
     * HINT:  John the Ripper
     * ACTUAL STEPS:
-        scp /opt/crypto-lab/shared/password2.db
+        scp crypto-lab:/opt/crypto-lab/shared/password2.db
         john --format=raw-md5 password2.db
     * LEARN:  bcrypt is the best (current) method for password storage
     * FLAG :  bcrypt is the best (current) method for password storage
