@@ -48,8 +48,33 @@ student
     
 ======
 
-VM
-* Ubuntu
+Setup local ~/.ssh/config
+    Host crypto-lab
+        IdentityFile ~/.ssh/xxxxxxxx.pem
+        HostName xxxxxxxx.compute-1.amazonaws.com
+        User ubuntu
+
+On EC2 instance
+* Latest Ubuntu
+    * tcp/22 only open port
 * git clone https://github.com/JElchison/crypto-lab.git
 * sudo crypto-lab/start.sh
-* copy SSH key to local
+* copy student SSH key to local
+    * ssh crypto-lab sudo cp /home/student/.ssh/student .
+    * ssh crypto-lab sudo chown ubuntu: student
+    * scp crypto-lab:student ~/.ssh/
+    * ssh crypto-lab rm -fv student
+* disseminate to students tarfile:
+    * ~/.ssh/config
+        Host crypto-lab
+            IdentityFile ~/.ssh/student
+            HostName xxxxxxxx.compute-1.amazonaws.com
+            User student
+    * ~/.ssh/student (from above)
+        * along with selected passphrase
+    * ~/connect.sh
+* instruct students
+    * ~/connect.sh
+        * local ports 5001-5004
+        * http://localhost:5001/
+    * ssh crypto-lab
