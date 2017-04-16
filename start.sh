@@ -20,7 +20,7 @@ dpkg-reconfigure --priority=low unattended-upgrades
 # https://docs.docker.com/engine/installation/linux/ubuntu/#os-requirements
 apt-get -y remove docker docker-engine || true
 apt-get -y install \
-    linux-image-extra-$(uname -r) \
+    linux-image-extra-"$(uname -r)" \
     linux-image-extra-virtual
 apt-get -y install \
     apt-transport-https \
@@ -98,7 +98,7 @@ chmod o-rx /home/ubuntu
 # build client
 #
 
-pushd $SCRIPT_DIR/client
+pushd "$SCRIPT_DIR/client"
 docker build -t lab_client .
 popd
 
@@ -107,7 +107,7 @@ popd
 # server operations
 #
 
-pushd $SCRIPT_DIR/server
+pushd "$SCRIPT_DIR/server"
 
 # build server
 docker build -t lab_server .
