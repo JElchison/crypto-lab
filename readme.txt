@@ -50,5 +50,6 @@ student
 
 VM
 * Ubuntu
-* sudo ./start.sh
+* git clone https://github.com/JElchison/crypto-lab.git
+* sudo crypto-lab/start.sh
 * copy SSH key to local
