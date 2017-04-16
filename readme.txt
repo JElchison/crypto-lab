@@ -44,7 +44,7 @@ ubuntu = teacher
 
 student
     * cannot sudo
-    * can access tcpdump interface (https://askubuntu.com/questions/530920/tcpdump-permissions-problem)
+    * can access tcpdump interface
     
 ======
 

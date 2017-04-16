@@ -94,7 +94,7 @@ fi
 chmod o-rx /home/ubuntu
 
 # allow student user to run tcpdump
-echo "user1  ALL=(ALL)       NOPASSWD: /usr/sbin/tcpdump" > /etc/sudoers.d/tcpdump
+echo "student  ALL=(ALL)       NOPASSWD: /usr/sbin/tcpdump" > /etc/sudoers.d/tcpdump
 
 #
 # build client
