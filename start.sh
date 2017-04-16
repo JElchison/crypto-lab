@@ -39,6 +39,9 @@ apt -y install docker-ce
 # install tcpdump
 apt install tcpdump
 
+# install python
+apt install python
+
 
 #
 # variables
@@ -142,6 +145,7 @@ PORT=5003
 IMAGE_NAME=lab3_server
 MODE=plaintext_time
 PASSWORD="Always compare password hashes using constant-time comparison"
+# password file intentionally not in SHARED_DIR
 PASSWORD_FILE="$TARGET_DIR/password3.db"
 HTTPS=True
 docker build --build-arg PASSWORD="$PASSWORD" --build-arg PASSWORD_FILE="$PASSWORD_FILE" --build-arg MODE=$MODE -t $IMAGE_NAME .
@@ -163,7 +167,9 @@ popd
 
 
 #
-# print success
+# success
 #
+
+docker ps
 
 echo "Success"
