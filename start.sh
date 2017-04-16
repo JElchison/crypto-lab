@@ -93,6 +93,14 @@ fi
 # forbid student access to /home/ubuntu
 chmod o-rx /home/ubuntu
 
+# allow student user to run tcpdump
+groupadd pcap
+usermod -a -G pcap ubuntu ubuntu
+usermod -a -G pcap ubuntu student
+chgrp pcap /usr/sbin/tcpdump
+chmod 750 /usr/sbin/tcpdump
+setcap cap_net_raw,cap_net_admin=eip /usr/sbin/tcpdump
+
 
 #
 # build client
