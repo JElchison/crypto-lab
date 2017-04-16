@@ -10,19 +10,19 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 #
 
 # update system
-apt -y update; apt -y upgrade && apt -y autoremove
+apt-get -y update; apt-get -y upgrade && apt-get -y autoremove
 
 # automatically install critical security updates
-apt install unattended-upgrades
+apt-get -y install unattended-upgrades
 dpkg-reconfigure --priority=low unattended-upgrades
 
 # install docker
 # https://docs.docker.com/engine/installation/linux/ubuntu/#os-requirements
-apt remove docker docker-engine || true
-apt -y install \
+apt-get -y remove docker docker-engine || true
+apt-get -y install \
     linux-image-extra-$(uname -r) \
     linux-image-extra-virtual
-apt -y install \
+apt-get -y install \
     apt-transport-https \
     ca-certificates \
     curl \
@@ -33,17 +33,17 @@ add-apt-repository \
    "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
    $(lsb_release -cs) \
    stable"
-apt -y update
-apt -y install docker-ce 
+apt-get -y update
+apt-get -y install docker-ce 
     
 # install tcpdump
-apt -y install tcpdump
+apt-get -y install tcpdump
 
 # install python
-apt -y install python
+apt-get -y install python
 
 # install bcrypt
-apt-get install -y \
+apt-get -y install \
     build-essential \
     libffi-dev \
     python-dev \

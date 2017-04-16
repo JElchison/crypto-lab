@@ -15,7 +15,7 @@ ARG TARGET_DIR=/opt/crypto-lab
 ARG SHARED_DIR=${TARGET_DIR}/shared
 
 
-RUN apt-get update && apt-get install -y \
+RUN apt-get -y update && apt-get -y install \
     build-essential \
     libffi-dev \
     python-dev \
