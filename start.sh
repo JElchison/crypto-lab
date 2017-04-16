@@ -94,7 +94,7 @@ fi
 chmod o-rx /home/ubuntu
 
 # allow student user to run tcpdump
-groupadd pcap
+groupadd pcap || true
 usermod -a -G pcap ubuntu
 usermod -a -G pcap student
 chgrp pcap /usr/sbin/tcpdump
