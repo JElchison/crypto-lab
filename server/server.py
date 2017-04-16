@@ -126,9 +126,6 @@ if __name__ == '__main__':
         mode = sys.argv[2]
     if len(sys.argv) >= 4:
         https = (sys.argv[3] == 'True')
-    # this is superfluous, but we leave it here so that the port number is seen in `ps ax`
-    if len(sys.argv) >= 5:
-        port = sys.argv[4]
 
     if https:
         context = ssl.create_default_context(purpose=ssl.Purpose.CLIENT_AUTH)

@@ -90,6 +90,9 @@ if [[ ! -f /home/student/.ssh/student ]]; then
   su student --login -c 'cat ~/.ssh/student.pub >> ~/.ssh/authorized_keys'
 fi
 
+# forbid student access to /home/ubuntu
+chmod o-rx /home/ubuntu
+
 
 #
 # build client
@@ -135,6 +138,7 @@ PASSWORD="Always_use_TLS"
 PASSWORD_FILE="$SHARED_DIR/password1.db"
 HTTPS=False
 ./$TOOL_GENERATE_PASSWORD_HASH $MODE "$PASSWORD" > $PASSWORD_FILE
+# the final argument (PORT) is superfluous, but we leave it here so that the port number is seen in `ps ax`
 docker run -d -p $PORT:$INTERNAL_PORT -v $SHARED_DIR:$SHARED_DIR:ro $IMAGE_NAME $SHARED_DIR/$SERVER_SCRIPT $PASSWORD_FILE $MODE $HTTPS $PORT
 docker run -dt lab_client /bin/bash -c "PASSWORD=\"$PASSWORD\" ./$CLIENT_SCRIPT \"$DOCKER0_IP\" $PORT $HTTPS"
 
@@ -146,6 +150,7 @@ PASSWORD="Always store passwords hashed and salted (never plain-text)"
 PASSWORD_FILE="$SHARED_DIR/password2.db"
 HTTPS=True
 ./$TOOL_GENERATE_PASSWORD_HASH $MODE "$PASSWORD" > $PASSWORD_FILE
+# the final argument (PORT) is superfluous, but we leave it here so that the port number is seen in `ps ax`
 docker run -d -p $PORT:$INTERNAL_PORT -v $SHARED_DIR:$SHARED_DIR:ro $IMAGE_NAME $SHARED_DIR/$SERVER_SCRIPT $PASSWORD_FILE $MODE $HTTPS $PORT
 docker run -dt lab_client /bin/bash -c "PASSWORD=\"$PASSWORD\" ./$CLIENT_SCRIPT \"$DOCKER0_IP\" $PORT $HTTPS"
 
@@ -158,6 +163,7 @@ PASSWORD="Always compare password hashes using constant-time comparison"
 PASSWORD_FILE="$TARGET_DIR/password3.db"
 HTTPS=True
 docker build --build-arg PASSWORD="$PASSWORD" --build-arg PASSWORD_FILE="$PASSWORD_FILE" --build-arg MODE=$MODE -t $IMAGE_NAME .
+# the final argument (PORT) is superfluous, but we leave it here so that the port number is seen in `ps ax`
 docker run -d -p $PORT:$INTERNAL_PORT -v $SHARED_DIR:$SHARED_DIR:ro $IMAGE_NAME $SHARED_DIR/$SERVER_SCRIPT $PASSWORD_FILE $MODE $HTTPS $PORT
 docker run -dt lab_client /bin/bash -c "PASSWORD=\"$PASSWORD\" ./$CLIENT_SCRIPT \"$DOCKER0_IP\" $PORT $HTTPS"
 
@@ -169,6 +175,7 @@ PASSWORD="bcrypt is the best (current) method for password storage"
 PASSWORD_FILE="$SHARED_DIR/password4.db"
 HTTPS=True
 ./$TOOL_GENERATE_PASSWORD_HASH $MODE "$PASSWORD" > $PASSWORD_FILE
+# the final argument (PORT) is superfluous, but we leave it here so that the port number is seen in `ps ax`
 docker run -d -p $PORT:$INTERNAL_PORT -v $SHARED_DIR:$SHARED_DIR:ro $IMAGE_NAME $SHARED_DIR/$SERVER_SCRIPT $PASSWORD_FILE $MODE $HTTPS $PORT
 docker run -dt lab_client /bin/bash -c "PASSWORD=\"$PASSWORD\" ./$CLIENT_SCRIPT \"$DOCKER0_IP\" $PORT $HTTPS"
 
