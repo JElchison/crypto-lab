@@ -70,9 +70,10 @@ adduser --disabled-password --gecos "" student || true
 if [[ ! -f /home/student/.ssh/id_ed25519 ]]; then
   su student --login -c 'mkdir ~/.ssh'
   su student --login -c 'chmod 700 ~/.ssh'
-  su student --login -c 'ssh-keygen -t ed25519 -f /home/student/.ssh/id_ed25519'
-  su student --login -c 'cat /home/student/.ssh/id_ed25519 > /home/student/.ssh/authorized_keys'
-  su student --login -c 'chmod 600 /home/student/.ssh/authorized_keys'
+  su student --login -c 'touch ~/.ssh/authorized_keys'
+  su student --login -c 'chmod 600 ~/.ssh/authorized_keys'
+  su student --login -c 'ssh-keygen -t ed25519 -f ~/.ssh/student'
+  su student --login -c 'cat ~/.ssh/student.pub >> ~/.ssh/authorized_keys'
 fi
 
 
