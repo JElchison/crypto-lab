@@ -37,10 +37,10 @@ apt -y update
 apt -y install docker-ce 
     
 # install tcpdump
-apt install tcpdump
+apt -y install tcpdump
 
 # install python
-apt install python
+apt -y install python
 
 
 #
