@@ -16,15 +16,11 @@ ARG SHARED_DIR=${TARGET_DIR}/shared
 
 
 RUN apt-get update && apt-get install -y \
-    build-essential \
-    libffi-dev \
-    python-dev \
     python-pip
 
 RUN pip install --upgrade pip
 
 RUN pip install \
-    bcrypt \
     flask \
     flask-login
 
