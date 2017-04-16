@@ -42,6 +42,15 @@ apt -y install tcpdump
 # install python
 apt -y install python
 
+# install bcrypt
+apt-get install -y \
+    build-essential \
+    libffi-dev \
+    python-dev \
+    python-pip
+pip install --upgrade pip
+pip install bcrypt
+
 
 #
 # variables
