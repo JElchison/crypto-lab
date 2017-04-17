@@ -70,12 +70,20 @@ INTERNAL_PORT=5000
 
 
 #
-# configure things
+# setup firewall
 #
 
-# setup firewall to allow ony SSH
+# allow inbound SSH
 ufw allow ssh
+# allow docker-docker traffic
+ufw allow in on docker0
+# skip confirmation
 ufw --force enable
+
+
+#
+# configure things
+#
 
 # add student user
 adduser --disabled-password --gecos "" student || true
