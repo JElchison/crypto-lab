@@ -60,14 +60,14 @@ On EC2 instance
 * git clone https://github.com/JElchison/crypto-lab.git
 * sudo crypto-lab/start.sh
 * copy student SSH key to local
-    * ssh crypto-lab sudo cp /home/student/.ssh/student .
-    * ssh crypto-lab sudo chown ubuntu: student
-    * scp crypto-lab:student ~/.ssh/
-    * ssh crypto-lab rm -fv student
+    * ssh crypto-lab sudo cp /home/student/.ssh/crypto-lab-student .
+    * ssh crypto-lab sudo chown ubuntu: crypto-lab-student
+    * scp crypto-lab:crypto-lab-student ~/.ssh/
+    * ssh crypto-lab rm -fv crypto-lab-student
 * disseminate to students tarfile:
     * ~/.ssh/config
         Host crypto-lab
-            IdentityFile ~/.ssh/student
+            IdentityFile ~/.ssh/crypto-lab-student
             HostName xxxxxxxx.compute-1.amazonaws.com
             User student
     * ~/.ssh/student (from above)

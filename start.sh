@@ -94,8 +94,8 @@ if [[ ! -f /home/student/.ssh/student ]]; then
   su student --login -c 'chmod 700 ~/.ssh'
   su student --login -c 'touch ~/.ssh/authorized_keys'
   su student --login -c 'chmod 600 ~/.ssh/authorized_keys'
-  su student --login -c 'ssh-keygen -t ed25519 -f ~/.ssh/student'
-  su student --login -c 'cat ~/.ssh/student.pub >> ~/.ssh/authorized_keys'
+  su student --login -c 'ssh-keygen -t ed25519 -f ~/.ssh/crypto-lab-student'
+  su student --login -c 'cat ~/.ssh/crypto-lab-student.pub >> ~/.ssh/authorized_keys'
 fi
 
 # forbid student access to /home/ubuntu
