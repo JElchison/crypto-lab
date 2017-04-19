@@ -66,7 +66,7 @@ On EC2 instance
     * ssh crypto-lab rm -fv crypto-lab-student
 * disseminate to students tarfile:
     * ~/.ssh/config
-        Host crypto-lab
+        Host crypto-lab-student
             IdentityFile ~/.ssh/crypto-lab-student
             HostName xxxxxxxx.compute-1.amazonaws.com
             User student
