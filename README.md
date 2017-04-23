@@ -51,7 +51,12 @@ Host crypto-lab
     IdentityFile ~/.ssh/crypto-lab.pem
 ```
 
-You should now be able to `ssh crypto-lab` and be given a prompt as `ubuntu@crypto-lab`.
+You should now be able to `ssh crypto-lab` and be given a prompt as `ubuntu@crypto-lab`.  Test it:
+
+*From your local machine (not the remote EC2 instance):*
+```bash
+you@local-machine:~$ ssh crypto-lab
+```
 
 **3. SSH to the EC2 instance and install the lab server**
 
@@ -97,9 +102,19 @@ Host crypto-lab-student
     IdentityFile ~/.ssh/crypto-lab-student
 ```
 
-You should now be able to `ssh crypto-lab-student` and be given a prompt as `student@crypto-lab`.
+You should now be able to `ssh crypto-lab-student` (using your chosen passphrase) and be given a prompt as `student@crypto-lab`.
+
+*From your local machine (not the remote EC2 instance):*
+```bash
+you@local-machine:~$ ssh crypto-lab-student
+```
 
 **6. SSH to the EC2 instance and start the lab server**
+
+*From your local machine (not the remote EC2 instance):*
+```bash
+you@local-machine:~$ ssh crypto-lab
+```
 
 Run the start script.
 
@@ -114,7 +129,7 @@ Look for 'Success' message.
 
 *From your local machine (not the remote EC2 instance):*
 ```bash
-you@local-machine:~$ cp -fv crypto-lab/solutions/lab3/lab3-template.py student-dist/lab3.py
+you@local-machine:~$ cp -fv crypto-lab/solutions/lab3/lab3-template.py crypto-lab/student-dist/lab3.py
 you@local-machine:~$ cp -fv ~/.ssh/crypto-lab-student crypto-lab/student-dist/.ssh/
 ```
 
@@ -129,10 +144,10 @@ Create the distributable file.
 
 *From your local machine (not the remote EC2 instance):*
 ```bash
-you@local-machine:~$ tar zvf crypto-lab/student-dist.tgz -C crypto-lab/student-dist/
+you@local-machine:~$ tar zcvf crypto-lab/student-dist.tgz -C crypto-lab/student-dist/ .
 ```
 
-**7. Distribute student-dist.tgz and your chosen passphrase to the students**
+**7. Distribute student-dist.tgz and your chosen passphrase to every student**
 
 
 # Instructions for Students
@@ -143,6 +158,8 @@ you@local-machine:~$ tar xvf student-dist.tgz -C ~
 you@local-machine:~$ chmod +x connect.sh
 you@local-machine:~$ ./connect.sh
 ```
+
+Warning:  The first command above will overwrite your local `~/.ssh/config`.
 
 At this point, you can treat ports 5001-5004 on your local machine as if they were on the remote lab server:
 
