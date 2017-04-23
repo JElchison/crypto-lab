@@ -63,7 +63,7 @@ ubuntu@crypto-lab:~$ cd
 ubuntu@crypto-lab:~$ git clone https://github.com/JElchison/crypto-lab.git
 ```
 
-Run the installation script.  Look for 'Success' message.
+Run the installation script.
 
 *From the remote EC2 instance (*not* your local machine):*
 ```bash
@@ -71,6 +71,8 @@ ubuntu@crypto-lab:~$ sudo crypto-lab/install.sh
 ```
 
 When prompted, enter a passprase for the students' SSH key.  You may want this to be hard to guess, but easy to communicate verbally.  This key and passphrase will be the only way that your students can login to the lab server (i.e. login password is disabled).
+
+Look for 'Success' message.
 
 **4. Copy newly created `student` SSH key to your local machine**
 
@@ -95,12 +97,14 @@ You should now be able to `ssh crypto-lab-student` and be given a prompt as `stu
 
 **6. SSH to the EC2 instance and start the lab server**
 
-Run the start script.  Look for 'Success' message.
+Run the start script.
 
 *From the remote EC2 instance (*not* your local machine):*
 ```bash
 ubuntu@crypto-lab:~$ sudo crypto-lab/start.sh
 ```
+
+Look for 'Success' message.
 
 **7. Prepare the distribution for students**
 
