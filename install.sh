@@ -89,8 +89,8 @@ if [[ ! -f /home/student/.ssh/student ]]; then
   su student --login -c 'cat ~/.ssh/crypto-lab-student.pub >> ~/.ssh/authorized_keys'
 fi
 
-# forbid student access to /home/ubuntu
-chmod o-rx /home/ubuntu
+# forbid student access to home directory
+chmod o-rwx ~
 
 # allow student user to run tcpdump
 echo "student  ALL=(ALL)       NOPASSWD: /usr/sbin/tcpdump" > /etc/sudoers.d/tcpdump
