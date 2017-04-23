@@ -110,22 +110,22 @@ Look for 'Success' message.
 
 *From your local machine (not the remote EC2 instance):*
 ```bash
-you@local-machine:~$ cp -fv solutions/lab3/lab3-template.py student-dist/lab3.py
-you@local-machine:~$ cp -fv ~/.ssh/crypto-lab-student student-dist/.ssh/
+you@local-machine:~$ cp -fv crypto-lab/solutions/lab3/lab3-template.py student-dist/lab3.py
+you@local-machine:~$ cp -fv ~/.ssh/crypto-lab-student crypto-lab/student-dist/.ssh/
 ```
 
 Update the HostName to point to your instance's Public DNS.
 
 *From your local machine (not the remote EC2 instance):*
 ```bash
-you@local-machine:~$ vim student-dist/.ssh/config
+you@local-machine:~$ vim crypto-lab/student-dist/.ssh/config
 ```
 
 Create the distributable file.
 
 *From your local machine (not the remote EC2 instance):*
 ```bash
-tar zvf student-dist.tgz -C student-dist/
+you@local-machine:~$ tar zvf crypto-lab/student-dist.tgz -C crypto-lab/student-dist/
 ```
 
 **7. Distribute student-dist.tgz and your chosen passphrase to the students**
@@ -133,12 +133,11 @@ tar zvf student-dist.tgz -C student-dist/
 
 # Instructions for Students
 
-Perform the following setup on your local machine:
-
+*From your local machine (not the remote EC2 instance):*
 ```bash
-tar xvf student-dist.tgz -C ~
-chmod +x connect.sh
-./connect.sh
+you@local-machine:~$ tar xvf student-dist.tgz -C ~
+you@local-machine:~$ chmod +x connect.sh
+you@local-machine:~$ ./connect.sh
 ```
 
 At this point, you can treat ports 5001-5004 on your local machine as if they were on the remote lab server:
@@ -152,6 +151,7 @@ To get started with part 1, simply visit http://localhost:5001/ in a browser on 
 
 To go interactive on the server:
 
+*From your local machine (not the remote EC2 instance):*
 ```bash
-ssh crypto-lab-student
+you@local-machine:~$ ssh crypto-lab-student
 ```
