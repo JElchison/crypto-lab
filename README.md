@@ -42,7 +42,7 @@ Two users are utilized on the Ubuntu machine:
 * Be sure to configure a Security Group that allows inbound SSH.  Everything else can be blocked.
 * As part of the instance launch, create a new SSH key pair, and name it `crypto-lab`.  Save `crypto-lab.pem` to your local `~/.ssh/`.
 
-**2. Add a new entry to your `~/.ssh/config`, updating the HostName to point to your instance's Public DNS:**
+**2. Add a new entry to your local machine `~/.ssh/config`, updating the HostName to point to your EC2 instance's Public DNS:**
 
 ```
 Host crypto-lab
@@ -93,7 +93,7 @@ you@local-machine:~$ scp crypto-lab:crypto-lab-student ~/.ssh/
 you@local-machine:~$ ssh crypto-lab rm -fv crypto-lab-student
 ```
 
-**5. Add a new entry to your `~/.ssh/config`, updating the HostName to point to your instance's Public DNS:**
+**5. Add a new entry to your local machine `~/.ssh/config`, updating the HostName to point to your EC2 instance's Public DNS:**
 
 ```
 Host crypto-lab-student
@@ -133,7 +133,7 @@ you@local-machine:~$ cp -fv crypto-lab/solutions/lab3/lab3-template.py crypto-la
 you@local-machine:~$ cp -fv ~/.ssh/crypto-lab-student crypto-lab/student-dist/.ssh/
 ```
 
-Update the HostName to point to your instance's Public DNS.
+Update the HostName in `student-dist/.ssh/config` to point to your EC2 instance's Public DNS.
 
 *From your local machine (not the remote EC2 instance):*
 ```bash
