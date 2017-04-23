@@ -28,6 +28,9 @@ INTERNAL_PORT=5000
 
 pushd "$SCRIPT_DIR/server"
 
+# kill all Docker instances
+docker kill $(docker ps -q)
+
 # cleanup target directory from last run
 rm -rf $TARGET_DIR
 # make new empty tree
