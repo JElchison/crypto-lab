@@ -33,7 +33,7 @@ Two users are utilized on the Ubuntu machine:
 2. A new `student` user, created by [`install.sh`](install.sh).  All students in the lab will utilize this user.  This user should *not* be a sudoer, but should be able to `sudo tcpdump`.
 
 
-# Installation
+# Setup
 
 **1. Create an Ubuntu EC2 instance, preferably the latest Ubuntu Server LTS 64-bit**
 
@@ -57,7 +57,7 @@ You should now be able to `ssh crypto-lab` and be given a prompt as `ubuntu@cryp
 
 Clone this repo.  Ensure that you place it in the 'ubuntu' user's home directory, out of reach of the students.
 
-From the remote EC2 instance (*not* your local machine):
+*From the remote EC2 instance (*not* your local machine):*
 ```
 ubuntu@crypto-lab:~$ cd
 ubuntu@crypto-lab:~$ git clone https://github.com/JElchison/crypto-lab.git
@@ -65,14 +65,16 @@ ubuntu@crypto-lab:~$ git clone https://github.com/JElchison/crypto-lab.git
 
 Run the installation script.  Look for 'Success' message.
 
-From the remote EC2 instance (*not* your local machine):
+*From the remote EC2 instance (*not* your local machine):*
 ```
 ubuntu@crypto-lab:~$ sudo crypto-lab/install.sh
 ```
 
+When prompted, enter a passprase for the students' SSH key.  You may want this to be hard to guess, but easy to communicate verbally.  This key and passphrase will be the only way that your students can login to the lab server (i.e. login password is disabled).
+
 **4. Copy newly created 'student' SSH key to your local machine**
 
-From your local machine (*not* the remote EC2 instance):
+*From your local machine (not the remote EC2 instance):*
 ```
 you@local-machine:~$ ssh crypto-lab sudo cp /home/student/.ssh/crypto-lab-student .
 you@local-machine:~$ ssh crypto-lab sudo chown ubuntu: crypto-lab-student
@@ -95,9 +97,52 @@ You should now be able to `ssh crypto-lab-student` and be given a prompt as `stu
 
 Run the start script.  Look for 'Success' message.
 
-From the remote EC2 instance (*not* your local machine):
+*From the remote EC2 instance (*not* your local machine):*
 ```
 ubuntu@crypto-lab:~$ sudo crypto-lab/start.sh
 ```
 
+**7. Prepare the distribution for students**
 
+*From your local machine (not the remote EC2 instance):*
+```
+you@local-machine:~$ cp -fv solutions/lab3/lab3-template.py student-dist/lab3.py
+you@local-machine:~$ cp -fv ~/.ssh/crypto-lab-student student-dist/.ssh/
+```
+
+Update the HostName to point to your instance's Public DNS.
+
+*From your local machine (not the remote EC2 instance):*
+```
+you@local-machine:~$ vim student-dist/.ssh/config
+```
+
+Create the distributable file.
+
+*From your local machine (not the remote EC2 instance):*
+```
+tar zvf student-dist.tgz -C student-dist/
+```
+
+**7. Distribute student-dist.tgz and your chosen passphrase to the students**
+
+
+# Instructions for Students
+
+Perform the following setup on your local machine:
+
+```
+tar xvf student-dist.tgz -C ~
+chmod +x connect.sh
+./connect.sh
+```
+
+At this point, you can treat ports 5001-5004 on your local machine as if they were on the remote lab server.
+
+For example, to get started with the first lab, simply visit http://localhost:5001/ in a browser on your local machine.
+
+To go interactive on the server:
+
+```
+ssh crypto-lab-student
+```
