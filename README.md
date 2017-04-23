@@ -29,8 +29,8 @@ The entire lab can be hosted on a single Ubuntu machine, network-reachable by la
 
 Two users are utilized on the Ubuntu machine:
 
-1. Whatever user you run [`start.sh`](start.sh) as.  On the EC2 instance, this is the `ubuntu` user.  To avoid spoling the challenge, students in the lab should not have access to this user's home directory.  This user should be a sudoer.
-2. A new `student` user, created by [`install.sh`](install.sh).  All students in the lab will utilize this user.  This user should *not* be a sudoer, but should be able to `sudo tcpdump`.
+1. Whatever user you run [`start.sh`](start.sh) as.  On the EC2 instance, this is the `ubuntu` user.  To avoid spoiling the challenge, students in the lab should not have access to this user's home directory.  This user should be a sudoer.
+2. A new `student` user, created by [`install.sh`](install.sh).  All students in the lab will utilize this user.  This user should **not** be a sudoer, but should be able to `sudo tcpdump`.
 
 
 # Setup
@@ -62,7 +62,7 @@ you@local-machine:~$ ssh crypto-lab
 
 Clone this repo.  Ensure that you place it in the `ubuntu` user's home directory, out of reach of the students.
 
-*From the remote EC2 instance (*not* your local machine):*
+*From the remote EC2 instance (not your local machine):*
 ```bash
 ubuntu@crypto-lab:~$ cd
 ubuntu@crypto-lab:~$ git clone https://github.com/JElchison/crypto-lab.git
@@ -70,14 +70,14 @@ ubuntu@crypto-lab:~$ git clone https://github.com/JElchison/crypto-lab.git
 
 Run the installation script.
 
-*From the remote EC2 instance (*not* your local machine):*
+*From the remote EC2 instance (not your local machine):*
 ```bash
 ubuntu@crypto-lab:~$ sudo crypto-lab/install.sh
 ```
 
 When prompted, accept the default settings for unattended upgrades.  This is for automatic background security updates.
 
-When prompted, enter a passprase for the students' SSH key.  You may want this to be hard to guess, but easy to communicate verbally.  This key and passphrase will be the only way that your students can login to the lab server (i.e. login password is disabled).
+When prompted, enter a paraphrase for the students' SSH key.  You may want this to be hard to guess, but easy to communicate verbally.  This key and passphrase will be the only way that your students can login to the lab server (i.e. login password is disabled).
 
 When prompted, enter information for your self-signed HTTPS certificate.  Details are yours to specify.
 
@@ -118,7 +118,7 @@ you@local-machine:~$ ssh crypto-lab
 
 Run the start script.
 
-*From the remote EC2 instance (*not* your local machine):*
+*From the remote EC2 instance (not your local machine):*
 ```bash
 ubuntu@crypto-lab:~$ sudo crypto-lab/start.sh
 ```
@@ -147,7 +147,9 @@ Create the distributable file.
 you@local-machine:~$ tar zcvf crypto-lab/student-dist.tgz -C crypto-lab/student-dist/ .
 ```
 
-**7. Distribute student-dist.tgz and your chosen passphrase to every student**
+**8. Distribute student-dist.tgz and your chosen passphrase to every student**
+
+Consider hosting on Dropbox and share a shortened URL.  Do **not** post publicly.
 
 
 # Instructions for Students
