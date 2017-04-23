@@ -40,6 +40,7 @@ Two users are utilized on the Ubuntu machine:
     * No IAM role required
     * Be sure to configure a Security Group that allows inbound SSH.  Everything else can be blocked.
     * Create a new SSH key pair, and name it `crypto-lab`.  Save `crypto-lab.pem` to your local `~/.ssh/`.
+
 2. Add a new entry to your `~/.ssh/config`, updating the HostName to point to your instance's Public DNS:
 ```
 Host crypto-lab
@@ -48,6 +49,7 @@ Host crypto-lab
     IdentityFile ~/.ssh/crypto-lab.pem
 ```
 You should now be able to `ssh crypto-lab` and be given a prompt as `ubuntu@crypto-lab`.
+
 3. SSH to the EC2 instance
     * Clone this repo.  Ensure that you place it in the 'ubuntu' user's home directory, out of reach of the students.
 ```
@@ -58,6 +60,7 @@ ubuntu@crypto-lab:~$ git clone https://github.com/JElchison/crypto-lab.git
 ```
 ubuntu@crypto-lab:~$ sudo crypto-lab/install.sh
 ```
+
 4. Copy newly created 'student' SSH key to your local machine
 ```
 you@local-machine:~$ ssh crypto-lab sudo cp /home/student/.ssh/crypto-lab-student .
@@ -65,6 +68,7 @@ you@local-machine:~$ ssh crypto-lab sudo chown ubuntu: crypto-lab-student
 you@local-machine:~$ scp crypto-lab:crypto-lab-student ~/.ssh/
 you@local-machine:~$ ssh crypto-lab rm -fv crypto-lab-student
 ```
+
 5. Add a new entry to your `~/.ssh/config`, updating the HostName to point to your instance's Public DNS:
 ```
 Host crypto-lab-student
