@@ -50,7 +50,7 @@ def check_password(password):
             # simulate work with a sleep
             time.sleep(0.25)
             try:
-                if string1[index] != string2[index]:
+                if password[index] != password_from_file[index]:
                     return False
             except IndexError:
                 return False
