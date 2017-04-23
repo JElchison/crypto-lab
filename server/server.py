@@ -119,7 +119,7 @@ def unauthorized_handler():
 
 if __name__ == '__main__':
     cwd = os.path.dirname(os.path.realpath(__file__))
-    
+
     if len(sys.argv) >= 2:
         password_file = sys.argv[1]
     if len(sys.argv) >= 3:
