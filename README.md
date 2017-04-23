@@ -156,7 +156,7 @@ Consider hosting on Dropbox and share a shortened URL.  Do **not** post publicly
 
 Download `student-dist.tgz` as posted by your instructor.
 
-*From your local machine (not the remote EC2 instance):*
+*From your local machine (not the lab server):*
 ```bash
 you@local-machine:~$ tar xvf student-dist.tgz -C ~
 ```
@@ -165,20 +165,20 @@ Warning:  The above command will overwrite your local `~/.ssh/config`.
 
 You should now be able to `ssh crypto-lab-student` (using your instructor's passphrase) and be given a prompt as `student@crypto-lab`.  Test it:
 
-*From your local machine (not the remote EC2 instance):*
+*From your local machine (not the lab server):*
 ```bash
 you@local-machine:~$ ssh crypto-lab-student
 ```
 
 Now, setup the connect script.
 
-*From your local machine (not the remote EC2 instance):*
+*From your local machine (not the lab server):*
 ```bash
 you@local-machine:~$ chmod +x connect.sh
 you@local-machine:~$ ./connect.sh
 ```
 
-At this point, you can treat ports 5001-5004 on your local machine as if they were on the remote lab server:
+At this point, you can treat ports 5001-5004 on your local machine as if they were on the lab server:
 
 * Lab part 1:  TCP port 5001
 * Lab part 2:  TCP port 5002
@@ -189,7 +189,7 @@ To get started with part 1, simply visit http://localhost:5001/ in a browser on 
 
 To go interactive on the server:
 
-*From your local machine (not the remote EC2 instance):*
+*From your local machine (not the lab server):*
 ```bash
 you@local-machine:~$ ssh crypto-lab-student
 ```
