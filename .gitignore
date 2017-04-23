@@ -130,3 +130,5 @@ nohup.out
 password*.db
 server.crt
 server.key
+crypto-lab-student*
+id_ed25519*
