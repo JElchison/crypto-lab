@@ -13,10 +13,10 @@ less /opt/crypto-lab/shared/server.py
 # password is stored in MD5 format.  let's try reversing it using John the Ripper.
 ```
 
-On student's local machine:
+*From your local machine (not the remote EC2 instance):*
 ```bash
-scp crypto-lab:/opt/crypto-lab/shared/password2.db
-john --format=raw-md5 password2.db
+scp crypto-lab-student:/opt/crypto-lab/shared/password4.db .
+john --format=raw-md5 password4.db
 ```
 
 ### Password
