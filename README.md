@@ -137,9 +137,14 @@ chmod +x connect.sh
 ./connect.sh
 ```
 
-At this point, you can treat ports 5001-5004 on your local machine as if they were on the remote lab server.
+At this point, you can treat ports 5001-5004 on your local machine as if they were on the remote lab server:
 
-For example, to get started with the first lab, simply visit http://localhost:5001/ in a browser on your local machine.
+* Lab part 1:  TCP port 5001
+* Lab part 2:  TCP port 5002
+* Lab part 3:  TCP port 5003
+* Lab part 4:  TCP port 5004
+
+To get started with part 1, simply visit http://localhost:5001/ in a browser on your local machine.
 
 To go interactive on the server:
 
