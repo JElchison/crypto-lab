@@ -37,10 +37,10 @@ Two users are utilized on the Ubuntu machine:
 
 **1. Create an Ubuntu EC2 instance, preferably the latest Ubuntu Server LTS 64-bit**
 
-* Last tested with `ubuntu/images/hvm-ssd/ubuntu-xenial-16.04-amd64-server-20170221 (ami-f4cc1de2)`.
+* Last tested with `ubuntu/images/hvm-ssd/ubuntu-xenial-16.04-amd64-server-20170414 (ami-80861296)`.
 * No IAM role required
 * Be sure to configure a Security Group that allows inbound SSH.  Everything else can be blocked.
-* As part of the instance launch, cCreate a new SSH key pair, and name it `crypto-lab`.  Save `crypto-lab.pem` to your local `~/.ssh/`.
+* As part of the instance launch, create a new SSH key pair, and name it `crypto-lab`.  Save `crypto-lab.pem` to your local `~/.ssh/`.
 
 **2. Add a new entry to your `~/.ssh/config`, updating the HostName to point to your instance's Public DNS:**
 
