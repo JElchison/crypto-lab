@@ -53,7 +53,7 @@ Host crypto-lab
 
 You should now be able to `ssh crypto-lab` and be given a prompt as `ubuntu@crypto-lab`.
 
-**3. SSH to the EC2 instance**
+**3. SSH to the EC2 instance and install the lab server**
 
 Clone this repo.  Ensure that you place it in the 'ubuntu' user's home directory, out of reach of the students.
 
@@ -90,3 +90,14 @@ Host crypto-lab-student
 ```
 
 You should now be able to `ssh crypto-lab-student` and be given a prompt as `student@crypto-lab`.
+
+**6. SSH to the EC2 instance and start the lab server**
+
+Run the start script.  Look for 'Success' message.
+
+From the remote EC2 instance (*not* your local machine):
+```
+ubuntu@crypto-lab:~$ sudo crypto-lab/start.sh
+```
+
+
