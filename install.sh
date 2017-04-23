@@ -128,6 +128,4 @@ popd
 # success
 #
 
-docker ps
-
 echo "Success"
