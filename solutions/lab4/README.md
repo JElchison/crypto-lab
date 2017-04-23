@@ -2,7 +2,7 @@
 
 ### Steps
 
-While student SSH'd into server:
+*From the remote EC2 instance (*not* your local machine):*
 ```bash
 # see what processes are using port 5004
 ps ax | grep 5004
