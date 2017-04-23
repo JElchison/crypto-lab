@@ -20,7 +20,7 @@ dpkg-reconfigure --priority=low unattended-upgrades
 # https://docs.docker.com/engine/installation/linux/ubuntu/#os-requirements
 apt-get -y remove docker docker-engine || true
 apt-get -y install \
-    linux-image-extra-"$(uname -r)" \
+    linux-image-extra-"$(uname -r | egrep -o '^[0-9\.]+')" \
     linux-image-extra-virtual
 apt-get -y install \
     apt-transport-https \
