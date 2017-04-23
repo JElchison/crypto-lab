@@ -36,32 +36,40 @@ Two users are utilized on the Ubuntu machine:
 # Installation
 
 1. Create an Ubuntu EC2 instance, preferably the latest Ubuntu Server LTS 64-bit
+
     * Last tested with `ubuntu/images/hvm-ssd/ubuntu-xenial-16.04-amd64-server-20170221 (ami-f4cc1de2)`.
     * No IAM role required
     * Be sure to configure a Security Group that allows inbound SSH.  Everything else can be blocked.
     * Create a new SSH key pair, and name it `crypto-lab`.  Save `crypto-lab.pem` to your local `~/.ssh/`.
 
 2. Add a new entry to your `~/.ssh/config`, updating the HostName to point to your instance's Public DNS:
+
 ```
 Host crypto-lab
     User ubuntu
     HostName ec2-xxxxxxxxxxxx.compute-1.amazonaws.com
     IdentityFile ~/.ssh/crypto-lab.pem
 ```
+
 You should now be able to `ssh crypto-lab` and be given a prompt as `ubuntu@crypto-lab`.
 
 3. SSH to the EC2 instance
+
     * Clone this repo.  Ensure that you place it in the 'ubuntu' user's home directory, out of reach of the students.
+
 ```
 ubuntu@crypto-lab:~$ cd
 ubuntu@crypto-lab:~$ git clone https://github.com/JElchison/crypto-lab.git
 ```
+
     * Run the installation script.  Look for 'Success' message.
+
 ```
 ubuntu@crypto-lab:~$ sudo crypto-lab/install.sh
 ```
 
 4. Copy newly created 'student' SSH key to your local machine
+
 ```
 you@local-machine:~$ ssh crypto-lab sudo cp /home/student/.ssh/crypto-lab-student .
 you@local-machine:~$ ssh crypto-lab sudo chown ubuntu: crypto-lab-student
@@ -70,11 +78,12 @@ you@local-machine:~$ ssh crypto-lab rm -fv crypto-lab-student
 ```
 
 5. Add a new entry to your `~/.ssh/config`, updating the HostName to point to your instance's Public DNS:
+
 ```
 Host crypto-lab-student
     User student
     HostName ec2-xxxxxxxxxxxx.compute-1.amazonaws.com
     IdentityFile ~/.ssh/crypto-lab-student
 ```
-You should now be able to `ssh crypto-lab-student` and be given a prompt as `student@crypto-lab`.
 
+You should now be able to `ssh crypto-lab-student` and be given a prompt as `student@crypto-lab`.
