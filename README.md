@@ -57,6 +57,7 @@ You should now be able to `ssh crypto-lab` and be given a prompt as `ubuntu@cryp
 
 Clone this repo.  Ensure that you place it in the 'ubuntu' user's home directory, out of reach of the students.
 
+From the remote EC2 instance (*not* your local machine):
 ```
 ubuntu@crypto-lab:~$ cd
 ubuntu@crypto-lab:~$ git clone https://github.com/JElchison/crypto-lab.git
@@ -64,12 +65,14 @@ ubuntu@crypto-lab:~$ git clone https://github.com/JElchison/crypto-lab.git
 
 Run the installation script.  Look for 'Success' message.
 
+From the remote EC2 instance (*not* your local machine):
 ```
 ubuntu@crypto-lab:~$ sudo crypto-lab/install.sh
 ```
 
 **4. Copy newly created 'student' SSH key to your local machine**
 
+From your local machine (*not* the remote EC2 instance):
 ```
 you@local-machine:~$ ssh crypto-lab sudo cp /home/student/.ssh/crypto-lab-student .
 you@local-machine:~$ ssh crypto-lab sudo chown ubuntu: crypto-lab-student
