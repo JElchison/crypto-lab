@@ -102,7 +102,7 @@ Host crypto-lab-student
     IdentityFile ~/.ssh/crypto-lab-student
 ```
 
-You should now be able to `ssh crypto-lab-student` (using your chosen passphrase) and be given a prompt as `student@crypto-lab`.
+You should now be able to `ssh crypto-lab-student` (using your chosen passphrase) and be given a prompt as `student@crypto-lab`.  Test it:
 
 *From your local machine (not the remote EC2 instance):*
 ```bash
@@ -147,21 +147,36 @@ Create the distributable file.
 you@local-machine:~$ tar zcvf crypto-lab/student-dist.tgz -C crypto-lab/student-dist/ .
 ```
 
-**8. Distribute student-dist.tgz and your chosen passphrase to every student**
+**8. Distribute `student-dist.tgz` and your chosen passphrase to every student**
 
 Consider hosting on Dropbox and share a shortened URL.  Do **not** post publicly.
 
 
 # Instructions for Students
 
+Download `student-dist.tgz` as posted by your instructor.
+
 *From your local machine (not the remote EC2 instance):*
 ```bash
 you@local-machine:~$ tar xvf student-dist.tgz -C ~
+```
+
+Warning:  The above command will overwrite your local `~/.ssh/config`.
+
+You should now be able to `ssh crypto-lab-student` (using your instructor's passphrase) and be given a prompt as `student@crypto-lab`.  Test it:
+
+*From your local machine (not the remote EC2 instance):*
+```bash
+you@local-machine:~$ ssh crypto-lab-student
+```
+
+Now, setup the connect script.
+
+*From your local machine (not the remote EC2 instance):*
+```bash
 you@local-machine:~$ chmod +x connect.sh
 you@local-machine:~$ ./connect.sh
 ```
-
-Warning:  The first command above will overwrite your local `~/.ssh/config`.
 
 At this point, you can treat ports 5001-5004 on your local machine as if they were on the remote lab server:
 
@@ -178,3 +193,5 @@ To go interactive on the server:
 ```bash
 you@local-machine:~$ ssh crypto-lab-student
 ```
+
+Good luck!
