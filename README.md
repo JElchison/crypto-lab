@@ -16,14 +16,23 @@ Following are some topics generally covered by these labs (in a random order):
 
 # Features
 
-* Supports many students:  One Docker host serves all students in the lab simultaneously
-* Dockerized:  Each of the 4 lab servers (and their corresponding clients) run in their own Docker instance (that's 8 instances total)
-* Easy setup:  Single Bash script to launch all 8 Docker instances
+* *Supports many students*:  One Docker host serves all students in the lab simultaneously
+* *Dockerized*:  Each of the 4 lab servers (and their corresponding clients) run in their own Docker instance (that's 8 instances total)
+* *Easy installation*:  Single Bash script to prepare the lab environment ([`install.sh`](install.sh))
+* *Easy launch*:  Single Bash script to (re)launch all 8 Docker instances ([`start.sh`](start.sh)).  Can be re-run to relaunch all services.
+* *Cloud-capable*:  Designed to be hosted on an EC2 instance.  However, it can also be run local and/or virtualized.
 
 
 # Environment
 
-Entire lab can be hosted on a single Ubuntu machine, network-reachable by lab students.  Server can be physically local, virtualized, or in the cloud.  Lab was designed to run on an EC2 instance.
+The entire lab can be hosted on a single Ubuntu machine, network-reachable by lab students.
+
+This machine should be Ubuntu-based, and only needs tcp/22 open for SSH.
+
+Two users are utilized on the Ubuntu machine:
+
+1. Whatever user you run [`start.sh`](start.sh) as.  On the EC2 instance, this is the `ubuntu` user.  To avoid spoling the challenge, students in the lab should not have access to this user's home directory.  This user should be a sudoer.
+2. A new `student` user, created by [`install.sh`](install.sh).  All students in the lab will utilize this user.  This user should *not* be a sudoer, but should be able to `sudo tcpdump`.
 
 
 # Installation
