@@ -70,6 +70,10 @@ Run the installation script.
 ubuntu@crypto-lab:~$ sudo crypto-lab/install.sh
 ```
 
+When prompted, accept the default settings for unattended upgrades.  This is for automatic background security updates.
+
+When prompted, enter information for your self-signed HTTPS certificate.  Details are yours to specify.
+
 When prompted, enter a passprase for the students' SSH key.  You may want this to be hard to guess, but easy to communicate verbally.  This key and passphrase will be the only way that your students can login to the lab server (i.e. login password is disabled).
 
 Look for 'Success' message.
