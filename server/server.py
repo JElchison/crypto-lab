@@ -47,7 +47,7 @@ def check_password(password):
     elif mode == "plaintext_time":
         for index in range(max(len(string1), len(string2))):
             # simulate work with a sleep
-            time.sleep(0.05)
+            time.sleep(0.25)
             try:
                 if string1[index] != string2[index]:
                     return False
