@@ -187,11 +187,4 @@ At this point, you can treat ports 5001-5004 on your local machine as if they we
 
 To get started with part 1, simply visit http://localhost:5001/ in a browser on your local machine.
 
-To go interactive on the server:
-
-*From your local machine (not the lab server):*
-```bash
-you@local-machine:~$ ssh crypto-lab-student
-```
-
 Good luck!
