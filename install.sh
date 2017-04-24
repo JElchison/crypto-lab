@@ -2,8 +2,6 @@
 
 set -eufx -o pipefail
 
-SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-
 
 #
 # install things
@@ -53,14 +51,6 @@ pip install bcrypt
 
 
 #
-# variables
-#
-
-CERT_FILE=server.crt
-KEY_FILE=server.key
-
-
-#
 # setup firewall
 #
 
@@ -94,34 +84,6 @@ chmod o-rwx ~
 
 # allow student user to run tcpdump
 echo "student  ALL=(ALL)       NOPASSWD: /usr/sbin/tcpdump" > /etc/sudoers.d/tcpdump
-
-
-#
-# build client
-#
-
-pushd "$SCRIPT_DIR/client"
-docker build -t lab_client .
-popd
-
-
-#
-# server operations
-#
-
-pushd "$SCRIPT_DIR/server"
-
-# build server
-docker build -t lab_server .
-
-# build self-signed TLS certificate, if doesn't exist
-if [[ ! -f $CERT_FILE || ! -f $KEY_FILE ]]; then
-  openssl req -x509 -days 365 -nodes -newkey rsa:2048 -keyout $KEY_FILE -out $CERT_FILE
-  chown "$SUDO_USER": $CERT_FILE
-  chown "$SUDO_USER": $KEY_FILE
-fi
-
-popd
 
 
 #

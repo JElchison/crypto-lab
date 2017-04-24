@@ -23,6 +23,15 @@ INTERNAL_PORT=5000
 
 
 #
+# build client
+#
+
+pushd "$SCRIPT_DIR/client"
+docker build -t lab_client .
+popd
+
+
+#
 # server operations
 #
 
@@ -42,6 +51,15 @@ chmod +x $SHARED_DIR/$SERVER_SCRIPT
 cp -fv $CERT_FILE $SHARED_DIR
 cp -fv $KEY_FILE $SHARED_DIR
 
+# build server
+docker build -t lab_server .
+
+# build self-signed TLS certificate, if doesn't exist
+if [[ ! -f $CERT_FILE || ! -f $KEY_FILE ]]; then
+  openssl req -x509 -days 365 -nodes -newkey rsa:2048 -keyout $KEY_FILE -out $CERT_FILE
+  chown "$SUDO_USER": $CERT_FILE
+  chown "$SUDO_USER": $KEY_FILE
+fi
 # lab1
 PORT=5001
 IMAGE_NAME=lab_server
