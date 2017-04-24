@@ -2,19 +2,29 @@
 
 ### Steps
 
-*From the remote EC2 instance (*not* your local machine):*
+See what processes are using port 5002.
+
+*From the remote EC2 instance (not your local machine):*
 ```bash
-# see what processes are using port 5002
-ps ax | grep 5002
+student@crypto-lab:~$ ps ax | grep 5002
+```
 
-# take a closer look at the python script using port 5002
-less /opt/crypto-lab/shared/server.py
+Take a closer look at the python script using port 5002.
 
-# the Flask application is serving HTTPS, so we can't sniff the password.  shucks.
-# however, the password is stored in plaintext format.
+*From the remote EC2 instance (not your local machine):*
+```bash
+student@crypto-lab:~$ less /opt/crypto-lab/shared/server.py
+```
 
-# dump password file
-cat /opt/crypto-lab/shared/password2.db
+The Flask application is serving HTTPS, so we can't sniff the password.  Shucks.
+
+However, the password is stored in plaintext format.
+
+Dump the password file.
+
+*From the remote EC2 instance (not your local machine):*
+```bash
+student@crypto-lab:~$ cat /opt/crypto-lab/shared/password2.db
 ```
 
 
