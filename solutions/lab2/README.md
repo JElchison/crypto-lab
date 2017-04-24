@@ -4,14 +4,14 @@
 
 See what processes are using port 5002.
 
-*From the remote EC2 instance (not your local machine):*
+*From the lab server (not your local machine):*
 ```bash
 student@crypto-lab:~$ ps ax | grep 5002
 ```
 
 Take a closer look at the python script using port 5002.
 
-*From the remote EC2 instance (not your local machine):*
+*From the lab server (not your local machine):*
 ```bash
 student@crypto-lab:~$ less /opt/crypto-lab/shared/server.py
 ```
@@ -22,7 +22,7 @@ However, the password is stored in plaintext format.
 
 Dump the password file.
 
-*From the remote EC2 instance (not your local machine):*
+*From the lab server (not your local machine):*
 ```bash
 student@crypto-lab:~$ cat /opt/crypto-lab/shared/password2.db
 ```

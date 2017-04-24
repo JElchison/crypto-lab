@@ -4,14 +4,14 @@
 
 See what processes are using port 5003.
 
-*From the remote EC2 instance (not your local machine):*
+*From the lab server (not your local machine):*
 ```bash
 student@crypto-lab:~$ ps ax | grep 5003
 ```
 
 Take a closer look at the python script using port 5003.
 
-*From the remote EC2 instance (not your local machine):*
+*From the lab server (not your local machine):*
 ```bash
 student@crypto-lab:~$ less /opt/crypto-lab/shared/server.py
 ```
