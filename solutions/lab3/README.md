@@ -24,5 +24,5 @@ See [solution.py](solution.py) for example implementation of such a timing attac
 ### Password
 
 ```
-Always compare password hashes using constant-time comparison
+Hashes4Life
 ```

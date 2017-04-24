@@ -88,7 +88,7 @@ docker run -dt lab_client /bin/bash -c "PASSWORD=\"$PASSWORD\" ./$CLIENT_SCRIPT 
 PORT=5003
 IMAGE_NAME=lab3_server
 MODE=plaintext_time
-PASSWORD="Always compare password hashes using constant-time comparison"
+PASSWORD="Hashes4Life"
 # password file intentionally not in SHARED_DIR
 PASSWORD_FILE="$TARGET_DIR/password3.db"
 HTTPS=True
