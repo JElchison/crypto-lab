@@ -13,7 +13,7 @@ less /opt/crypto-lab/shared/server.py
 
 Password is checked using a variable-time comparison.  We can infer how many correct characters at the beginning of our guess by watching the time the server takes to return.
 
-See solution.py for example implementation of such a timing attack.
+See [solution.py](solution.py) for example implementation of such a timing attack.
 
 
 ### Password
