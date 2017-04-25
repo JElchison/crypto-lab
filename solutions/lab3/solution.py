@@ -15,6 +15,16 @@ CHARSET = "abcdefghijklmnopqrstuvwxyzHL4"
 INVALID_CHAR = '`'
 
 
+# make a single guess and return the time it took to make
+def make_guess(guess):
+    payload = {field: guess}
+    r = requests.post(url, data=payload, verify=False)
+
+    print r.elapsed, guess
+
+    return r.elapsed
+
+
 # make one round of guesses, and return results sorted by decreasing time
 def get_sorted_guesses(known):
     guesses = {}
@@ -23,12 +33,7 @@ def get_sorted_guesses(known):
         # guess must have an invalid trailing character so that we get an indication when this_char is correct
         guess = known + this_char + INVALID_CHAR
 
-        payload = {field: guess}
-        r = requests.post(url, data=payload, verify=False)
-
-        print r.elapsed, guess
-
-        guesses[guess] = r.elapsed
+        guesses[guess] = make_guess(guess)
 
     return sorted(guesses.items(), key=operator.itemgetter(1), reverse=True)
 
