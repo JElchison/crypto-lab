@@ -18,6 +18,8 @@ student@crypto-lab:~$ less /opt/crypto-lab/shared/server.py
 
 The password is checked using a variable-time comparison.  We can infer how many correct characters at the beginning of our guess by watching the time the server takes to return.
 
+Because of timing jitter, we should debounce and/or employ statistics.
+
 See [solution.py](solution.py) for example implementation of such a timing attack.
 
 
