@@ -60,6 +60,7 @@ if [[ ! -f $CERT_FILE || ! -f $KEY_FILE ]]; then
   chown "$SUDO_USER": $CERT_FILE
   chown "$SUDO_USER": $KEY_FILE
 fi
+
 # lab1
 PORT=5001
 IMAGE_NAME=lab_server
@@ -76,7 +77,7 @@ docker run -dt lab_client /bin/bash -c "PASSWORD=\"$PASSWORD\" ./$CLIENT_SCRIPT 
 PORT=5002
 IMAGE_NAME=lab_server
 MODE=plaintext
-PASSWORD="Always store passwords hashed and salted (never plain-text)"
+PASSWORD="Always store passwords hashed and salted (never in plaintext)"
 PASSWORD_FILE="$SHARED_DIR/password2.db"
 HTTPS=True
 ./$TOOL_GENERATE_PASSWORD_HASH $MODE "$PASSWORD" > $PASSWORD_FILE
@@ -86,23 +87,35 @@ docker run -dt lab_client /bin/bash -c "PASSWORD=\"$PASSWORD\" ./$CLIENT_SCRIPT 
 
 # lab3
 PORT=5003
-IMAGE_NAME=lab3_server
-MODE=plaintext_time
-PASSWORD="Hashes4Life"
-# password file intentionally not in SHARED_DIR
-PASSWORD_FILE="$TARGET_DIR/password3.db"
+IMAGE_NAME=lab_server
+MODE=base64
+PASSWORD="Always store passwords hashed and salted (never use reversible encoding)"
+PASSWORD_FILE="$SHARED_DIR/password3.db"
 HTTPS=True
-docker build --build-arg PASSWORD="$PASSWORD" --build-arg PASSWORD_FILE="$PASSWORD_FILE" --build-arg MODE=$MODE -t $IMAGE_NAME .
+./$TOOL_GENERATE_PASSWORD_HASH $MODE "$PASSWORD" > $PASSWORD_FILE
 # the final argument (PORT) is superfluous, but we leave it here so that the port number is seen in `ps ax`
 docker run -d -p $PORT:$INTERNAL_PORT -v $SHARED_DIR:$SHARED_DIR:ro $IMAGE_NAME $SHARED_DIR/$SERVER_SCRIPT $PASSWORD_FILE $MODE $HTTPS $PORT
 docker run -dt lab_client /bin/bash -c "PASSWORD=\"$PASSWORD\" ./$CLIENT_SCRIPT \"$DOCKER0_IP\" $PORT $HTTPS"
 
 # lab4
 PORT=5004
+IMAGE_NAME=lab4_server
+MODE=plaintext_time
+PASSWORD="Hashes4Life"
+# password file intentionally not in SHARED_DIR
+PASSWORD_FILE="$TARGET_DIR/password4.db"
+HTTPS=True
+docker build --build-arg PASSWORD="$PASSWORD" --build-arg PASSWORD_FILE="$PASSWORD_FILE" --build-arg MODE=$MODE -t $IMAGE_NAME .
+# the final argument (PORT) is superfluous, but we leave it here so that the port number is seen in `ps ax`
+docker run -d -p $PORT:$INTERNAL_PORT -v $SHARED_DIR:$SHARED_DIR:ro $IMAGE_NAME $SHARED_DIR/$SERVER_SCRIPT $PASSWORD_FILE $MODE $HTTPS $PORT
+docker run -dt lab_client /bin/bash -c "PASSWORD=\"$PASSWORD\" ./$CLIENT_SCRIPT \"$DOCKER0_IP\" $PORT $HTTPS"
+
+# lab5
+PORT=5005
 IMAGE_NAME=lab_server
 MODE=md5
 PASSWORD="bcrypt is the best (current) method for password storage"
-PASSWORD_FILE="$SHARED_DIR/password4.db"
+PASSWORD_FILE="$SHARED_DIR/password5.db"
 HTTPS=True
 ./$TOOL_GENERATE_PASSWORD_HASH $MODE "$PASSWORD" > $PASSWORD_FILE
 # the final argument (PORT) is superfluous, but we leave it here so that the port number is seen in `ps ax`

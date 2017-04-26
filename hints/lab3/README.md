@@ -1,3 +1,3 @@
 # lab3 Hint
 
-How long does it take?
+CONTROL-Z!  CONTROL-Z!

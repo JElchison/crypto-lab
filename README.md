@@ -1,7 +1,7 @@
 crypto-lab
 ==========
 
-This repo embodies 4 separate cryptographic labs.  The goal in each of the 4 labs is to find the password.  All labs target a student new to cryptography, and the time goal for all labs is one hour.
+This repo embodies 5 separate cryptographic labs.  The goal in each of the labs is to find the password.  All labs target a student new to cryptography, and the time goal for all labs is one hour.
 
 
 # Topics
@@ -12,11 +12,12 @@ Following are some topics generally covered by these labs (in a random order):
 * The woes of transmitting plaintext passwords in the clear (and how they can be sniffed)
 * The woes of using outdated primitives (and how old hashing algorithms can be reversed)
 * The woes of storing plaintext passwords in the clear (and how they can be stolen)
+* The woes of storing passwords with reversible encoding (and how they can be stolen)
 
 
 # Features
 
-* **Dockerized**:  Each of the 4 lab servers (and their corresponding clients) run in their own Docker instance (that's 8 instances total)
+* **Dockerized**:  Each of the lab servers (and their corresponding clients) run in their own Docker instance (that's 8 instances total)
 * **Supports many students**:  One Docker host serves all students in the lab simultaneously
 * **Easy installation**:  Single Bash script to prepare the lab environment ([`install.sh`](install.sh))
 * **Easy launch**:  Single Bash script to (re)launch all 8 Docker instances ([`start.sh`](start.sh)).  Can be re-run to relaunch all services.
@@ -178,12 +179,13 @@ you@local-machine:~$ chmod +x connect.sh
 you@local-machine:~$ ./connect.sh
 ```
 
-At this point, you can treat ports 5001-5004 on your local machine as if they were on the lab server:
+At this point, you can treat ports 5001-5005 on your local machine as if they were on the lab server:
 
 * Lab part 1:  TCP port 5001
 * Lab part 2:  TCP port 5002
 * Lab part 3:  TCP port 5003
 * Lab part 4:  TCP port 5004
+* Lab part 5:  TCP port 5005
 
 To get started with part 1, simply visit http://localhost:5001/ in a browser on your local machine.
 

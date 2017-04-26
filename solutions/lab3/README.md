@@ -16,13 +16,20 @@ Take a closer look at the python script using port 5003.
 student@crypto-lab:~$ less /opt/crypto-lab/shared/server.py
 ```
 
-The password is checked using a variable-time comparison.  We can infer how many correct characters at the beginning of our guess by watching the time the server takes to return.
+The password isn't stored in plaintext format.  Shucks.
 
-See [solution.py](solution.py) for example implementation of such a timing attack.
+However, the password looks to be Base64, which is reversible.
+
+Base64-decode the password file.
+
+*From the lab server (not your local machine):*
+```bash
+student@crypto-lab:~$ base64 -d /opt/crypto-lab/shared/password3.db
+```
 
 
 ### Password
 
 ```
-Hashes4Life
+Always store passwords hashed and salted (never use reversible encoding)
 ```

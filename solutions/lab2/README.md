@@ -31,5 +31,5 @@ student@crypto-lab:~$ cat /opt/crypto-lab/shared/password2.db
 ### Password
 
 ```
-Always store passwords hashed and salted (never plain-text)
+Always store passwords hashed and salted (never in plaintext)
 ```

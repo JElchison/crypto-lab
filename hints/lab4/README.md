@@ -1,3 +1,3 @@
 # lab4 Hint
 
-John the Ripper
+How long does it take?

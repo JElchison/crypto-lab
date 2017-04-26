@@ -3,6 +3,7 @@
 import sys
 import bcrypt
 import hashlib
+import base64
 
 
 mode = sys.argv[1]
@@ -16,10 +17,10 @@ elif mode == "md5":
     m.update(password)
     print m.hexdigest()
 
-elif mode == "plaintext":
-    print password
+elif mode == "base64":
+    print base64.b64encode(password)
 
-elif mode == "plaintext_time":
+elif mode == "plaintext" or mode == "plaintext_time":
     print password
 
 else:
