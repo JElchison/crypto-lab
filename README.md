@@ -130,7 +130,7 @@ Look for 'Success' message.
 
 *From your local machine (not the remote EC2 instance):*
 ```bash
-you@local-machine:~$ cp -fv crypto-lab/solutions/lab3/lab3-template.py crypto-lab/student-dist/lab3.py
+you@local-machine:~$ cp -fv crypto-lab/solutions/lab4/lab4-template.py crypto-lab/student-dist/lab4.py
 you@local-machine:~$ cp -fv ~/.ssh/crypto-lab-student crypto-lab/student-dist/.ssh/
 ```
 
