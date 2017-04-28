@@ -98,12 +98,16 @@ def crack_password(url, field):
 
         # calculate time delta between best and next best
         time_delta = (best_guess_time - next_best_guess_time).total_seconds()
-        print "               time_delta =", time_delta
 
         # is the gap significant?
-        if time_delta < 0.5 * slope.total_seconds():
+        if time_delta < 0.25 * slope.total_seconds():
             # gap is insignificant.  replace finding with an invalid character.
             best_guess_char = INVALID_CHAR
+            print "               time_delta =", time_delta, "(insignificant)"
+        else:
+            print "               time_delta =", time_delta
+
+        print
 
         # debounce (helpful with jitter caused by comms)
         if best_guess_char != last_best_guess_char:
