@@ -101,7 +101,7 @@ docker run -dt lab_client /bin/bash -c "PASSWORD=\"$PASSWORD\" ./$CLIENT_SCRIPT 
 PORT=5004
 IMAGE_NAME=lab4_server
 MODE=plaintext_time
-PASSWORD="hashmekthx"
+PASSWORD="plzhash"
 # password file intentionally not in SHARED_DIR
 PASSWORD_FILE="$TARGET_DIR/password4.db"
 HTTPS=True

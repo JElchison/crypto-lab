@@ -26,5 +26,5 @@ See [solution.py](solution.py) for example implementation of such a timing attac
 ### Password
 
 ```
-hashmekthx
+plzhash
 ```
