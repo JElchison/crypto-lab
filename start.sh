@@ -45,6 +45,13 @@ rm -rf $TARGET_DIR
 # make new empty tree
 mkdir -p $SHARED_DIR
 
+# build self-signed TLS certificate, if doesn't exist
+if [[ ! -f $CERT_FILE || ! -f $KEY_FILE ]]; then
+  openssl req -x509 -days 365 -nodes -newkey rsa:2048 -keyout $KEY_FILE -out $CERT_FILE
+  chown "$SUDO_USER": $CERT_FILE
+  chown "$SUDO_USER": $KEY_FILE
+fi
+
 # copy server files
 cp -fv $SERVER_SCRIPT $SHARED_DIR
 chmod +x $SHARED_DIR/$SERVER_SCRIPT
@@ -53,13 +60,6 @@ cp -fv $KEY_FILE $SHARED_DIR
 
 # build server
 docker build -t lab_server .
-
-# build self-signed TLS certificate, if doesn't exist
-if [[ ! -f $CERT_FILE || ! -f $KEY_FILE ]]; then
-  openssl req -x509 -days 365 -nodes -newkey rsa:2048 -keyout $KEY_FILE -out $CERT_FILE
-  chown "$SUDO_USER": $CERT_FILE
-  chown "$SUDO_USER": $KEY_FILE
-fi
 
 # lab1
 PORT=5001
