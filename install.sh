@@ -70,7 +70,7 @@ ufw --force enable
 adduser --disabled-password --gecos "" student || true
 
 # setup student SSH key
-if [[ ! -f /home/student/.ssh/student ]]; then
+if [[ ! -f /home/student/.ssh/crypto-lab-student ]]; then
   su student --login -c 'mkdir ~/.ssh' || true
   su student --login -c 'chmod 700 ~/.ssh'
   su student --login -c 'touch ~/.ssh/authorized_keys'
