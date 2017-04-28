@@ -49,6 +49,9 @@ apt-get -y install \
 pip install --upgrade pip
 pip install bcrypt
 
+# install requests
+pip install requests
+
 
 #
 # setup firewall
