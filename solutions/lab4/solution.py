@@ -10,7 +10,7 @@ from requests.packages.urllib3.exceptions import InsecureRequestWarning
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 
 # characters to attempt in password
-CHARSET = "abcdefghijklmnopqrstuvwxyzHL4"
+CHARSET = "abcdefghijklmnopqrstuvwxyz"
 # any character not in above CHARSET
 INVALID_CHAR = '`'
 

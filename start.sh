@@ -102,7 +102,7 @@ docker run -d -p $PORT:$INTERNAL_PORT -v $SHARED_DIR:$SHARED_DIR:ro $IMAGE_NAME 
 PORT=5004
 IMAGE_NAME=lab4_server
 MODE=plaintext_time
-PASSWORD="Hashes4Life"
+PASSWORD="hashmekthx"
 # password file intentionally not in SHARED_DIR
 PASSWORD_FILE="$TARGET_DIR/password4.db"
 HTTPS=True
