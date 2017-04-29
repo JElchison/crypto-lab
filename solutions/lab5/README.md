@@ -16,7 +16,7 @@ Take a closer look at the python script using port 5005.
 student@crypto-lab:~$ less /opt/crypto-lab/shared/server.py
 ```
 
-The password is stored in MD5 format.  Let's try reversing it using John the Ripper.
+The password is stored in MD5 format.  Let's try reversing it using John the Ripper (Jumbo community-enhanced version).
 
 First, copy the hash file to your local machine.
 
