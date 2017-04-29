@@ -105,6 +105,7 @@ PASSWORD="plzhash"
 # password file intentionally not in SHARED_DIR
 PASSWORD_FILE="$TARGET_DIR/password4.db"
 HTTPS=True
+# intentionally building this separately from the others
 docker build --build-arg PASSWORD="$PASSWORD" --build-arg PASSWORD_FILE="$PASSWORD_FILE" --build-arg MODE=$MODE -t $IMAGE_NAME .
 # the final argument (PORT) is superfluous, but we leave it here so that the port number is seen in `ps ax`
 docker run -d -p $PORT:$INTERNAL_PORT -v $SHARED_DIR:$SHARED_DIR:ro $IMAGE_NAME $SHARED_DIR/$SERVER_SCRIPT $PASSWORD_FILE $MODE $HTTPS $PORT
