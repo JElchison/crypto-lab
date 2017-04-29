@@ -114,7 +114,7 @@ docker run -dt lab_client /bin/bash -c "PASSWORD=\"$PASSWORD\" ./$CLIENT_SCRIPT 
 PORT=5005
 IMAGE_NAME=lab_server
 MODE=md5
-PASSWORD="bcrypt is the best (current) method for password storage"
+PASSWORD="Password9"
 PASSWORD_FILE="$SHARED_DIR/password5.db"
 HTTPS=True
 ./$TOOL_GENERATE_PASSWORD_HASH $MODE "$PASSWORD" > $PASSWORD_FILE

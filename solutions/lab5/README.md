@@ -36,5 +36,5 @@ you@local-machine:~$ john --format=raw-md5 password5.db
 ### Password
 
 ```
-bcrypt is the best (current) method for password storage
+Password9
 ```
