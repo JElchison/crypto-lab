@@ -47,7 +47,7 @@ mkdir -p $SHARED_DIR
 
 # build self-signed TLS certificate, if doesn't exist
 if [[ ! -f $CERT_FILE || ! -f $KEY_FILE ]]; then
-  openssl req -x509 -days 365 -nodes -newkey rsa:2048 -keyout $KEY_FILE -out $CERT_FILE
+  openssl req -x509 -days 365 -nodes -newkey ec:<(openssl ecparam -name secp521r1) -keyout $KEY_FILE -out $CERT_FILE
   chown "$SUDO_USER": $CERT_FILE
   chown "$SUDO_USER": $KEY_FILE
 fi
