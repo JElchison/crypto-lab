@@ -6,6 +6,16 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 
 #
+# avoid perl locale errors
+#
+
+export LANGUAGE=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+export LC_TYPE=en_US.UTF-8
+
+
+#
 # variables
 #
 
