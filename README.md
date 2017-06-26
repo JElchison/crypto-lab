@@ -42,7 +42,7 @@ Two users are utilized on the Ubuntu machine:
 * No IAM role required
 * Be sure to configure a Security Group that allows inbound SSH.  Everything else can be blocked.
 * As part of the instance launch, create a new SSH key pair, and name it `crypto-lab`.  Save `crypto-lab.pem` to your local `~/.ssh/`.
-* Be sure to set the proper permissions for the new key file (`chmod 400 ~/.ssh/crypto-lab.pem`)
+    * Be sure to set the proper permissions for the new key file (`chmod 400 ~/.ssh/crypto-lab.pem`)
 
 **2. Add a new entry to your local machine `~/.ssh/config`, updating the HostName to point to your EC2 instance's Public DNS:**
 
