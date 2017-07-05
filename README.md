@@ -154,6 +154,45 @@ you@local-machine:~$ tar zcvf crypto-lab/student-dist.tgz -C crypto-lab/student-
 Consider hosting on Dropbox and share a shortened URL.  Do **not** post publicly.
 
 
+# Instructions for Students
+
+Download `student-dist.tgz` as posted by your instructor.
+
+*From your local machine (not the lab server):*
+```bash
+you@local-machine:~$ tar xvf student-dist.tgz -C ~ --no-same-owner
+```
+
+Warning:  The above command will overwrite your local `~/.ssh/config`.
+
+You should now be able to `ssh crypto-lab-student` (using your instructor's passphrase) and be given a prompt as `student@crypto-lab`.  Test it:
+
+*From your local machine (not the lab server):*
+```bash
+you@local-machine:~$ ssh crypto-lab-student
+```
+
+Now, setup the connect script.
+
+*From your local machine (not the lab server):*
+```bash
+you@local-machine:~$ chmod +x connect.sh
+you@local-machine:~$ ./connect.sh
+```
+
+At this point, you can treat ports 5001-5005 on your local machine as if they were on the lab server:
+
+* Lab part 1:  TCP port 5001
+* Lab part 2:  TCP port 5002
+* Lab part 3:  TCP port 5003
+* Lab part 4:  TCP port 5004 (a lab4.py template has been provided to get you started)
+* Lab part 5:  TCP port 5005
+
+To get started with part 1, simply visit http://localhost:5001/ in a browser on your local machine.
+
+Good luck!
+
+
 ## Restarting the Server
 
 If you must restart the server before the lab is completed, you'll need to follow these steps before continuing with the lab.
@@ -229,42 +268,3 @@ you@local-machine:~$ tar zcvf crypto-lab/student-dist.tgz -C crypto-lab/student-
 **4. Redistribute `student-dist.tgz` and your chosen passphrase to every student**
 
 Consider hosting on Dropbox and share a shortened URL.  Do **not** post publicly.
-
-
-# Instructions for Students
-
-Download `student-dist.tgz` as posted by your instructor.
-
-*From your local machine (not the lab server):*
-```bash
-you@local-machine:~$ tar xvf student-dist.tgz -C ~ --no-same-owner
-```
-
-Warning:  The above command will overwrite your local `~/.ssh/config`.
-
-You should now be able to `ssh crypto-lab-student` (using your instructor's passphrase) and be given a prompt as `student@crypto-lab`.  Test it:
-
-*From your local machine (not the lab server):*
-```bash
-you@local-machine:~$ ssh crypto-lab-student
-```
-
-Now, setup the connect script.
-
-*From your local machine (not the lab server):*
-```bash
-you@local-machine:~$ chmod +x connect.sh
-you@local-machine:~$ ./connect.sh
-```
-
-At this point, you can treat ports 5001-5005 on your local machine as if they were on the lab server:
-
-* Lab part 1:  TCP port 5001
-* Lab part 2:  TCP port 5002
-* Lab part 3:  TCP port 5003
-* Lab part 4:  TCP port 5004 (a lab4.py template has been provided to get you started)
-* Lab part 5:  TCP port 5005
-
-To get started with part 1, simply visit http://localhost:5001/ in a browser on your local machine.
-
-Good luck!
