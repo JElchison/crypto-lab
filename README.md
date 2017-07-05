@@ -146,7 +146,7 @@ Create the distributable file.
 
 *From your local machine (not the remote EC2 instance):*
 ```bash
-you@local-machine:~$ tar zcvf crypto-lab/student-dist.tgz -C crypto-lab/student-dist/ .
+you@local-machine:~$ tar zcvf crypto-lab/student-dist.tgz -C crypto-lab/student-dist/ --numeric-owner .
 ```
 
 **8. Distribute `student-dist.tgz` and your chosen passphrase to every student**
@@ -160,7 +160,7 @@ Download `student-dist.tgz` as posted by your instructor.
 
 *From your local machine (not the lab server):*
 ```bash
-you@local-machine:~$ tar xvf student-dist.tgz -C ~
+you@local-machine:~$ tar xvf student-dist.tgz -C ~ --no-same-owner
 ```
 
 Warning:  The above command will overwrite your local `~/.ssh/config`.
