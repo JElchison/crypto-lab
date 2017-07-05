@@ -154,6 +154,83 @@ you@local-machine:~$ tar zcvf crypto-lab/student-dist.tgz -C crypto-lab/student-
 Consider hosting on Dropbox and share a shortened URL.  Do **not** post publicly.
 
 
+## Restarting the Server
+
+If you must restart the server before the lab is completed, you'll need to follow these steps before continuing with the lab.
+
+**1. Update the HostName in your local machine `~/.ssh/config` to point to your EC2 instance's Public DNS:**
+
+```
+Host crypto-lab
+    User ubuntu
+    HostName ec2-xxxxxxxxxxxx.compute-1.amazonaws.com
+    IdentityFile ~/.ssh/crypto-lab.pem
+
+Host crypto-lab-student
+    User student
+    HostName ec2-xxxxxxxxxxxx.compute-1.amazonaws.com
+    IdentityFile ~/.ssh/crypto-lab-student
+```
+
+You should now be able to `ssh crypto-lab` and be given a prompt as `ubuntu@crypto-lab`.  Test it:
+
+*From your local machine (not the remote EC2 instance):*
+```bash
+you@local-machine:~$ ssh crypto-lab
+```
+
+You should now be able to `ssh crypto-lab-student` (using your chosen passphrase) and be given a prompt as `student@crypto-lab`.  Test it:
+
+*From your local machine (not the remote EC2 instance):*
+```bash
+you@local-machine:~$ ssh crypto-lab-student
+```
+
+**2. SSH to the EC2 instance and start the lab server**
+
+*From your local machine (not the remote EC2 instance):*
+```bash
+you@local-machine:~$ ssh crypto-lab
+```
+
+Run the start script.
+
+*From the remote EC2 instance (not your local machine):*
+```bash
+ubuntu@crypto-lab:~$ sudo crypto-lab/start.sh
+```
+
+When prompted, enter information for your self-signed HTTPS certificate.  Details are yours to specify.
+
+Look for 'Success' message.
+
+**3. Update the distribution for students**
+
+*From your local machine (not the remote EC2 instance):*
+```bash
+you@local-machine:~$ cp -fv crypto-lab/solutions/lab4/lab4-template.py crypto-lab/student-dist/lab4.py
+you@local-machine:~$ cp -fv ~/.ssh/crypto-lab-student crypto-lab/student-dist/.ssh/
+```
+
+Update the HostName in `student-dist/.ssh/config` to point to your EC2 instance's Public DNS.
+
+*From your local machine (not the remote EC2 instance):*
+```bash
+you@local-machine:~$ vim crypto-lab/student-dist/.ssh/config
+```
+
+Create the distributable file.
+
+*From your local machine (not the remote EC2 instance):*
+```bash
+you@local-machine:~$ tar zcvf crypto-lab/student-dist.tgz -C crypto-lab/student-dist/ --numeric-owner .
+```
+
+**4. Redistribute `student-dist.tgz` and your chosen passphrase to every student**
+
+Consider hosting on Dropbox and share a shortened URL.  Do **not** post publicly.
+
+
 # Instructions for Students
 
 Download `student-dist.tgz` as posted by your instructor.
