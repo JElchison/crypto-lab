@@ -20,7 +20,7 @@ The password is checked using a variable-time comparison.  We can infer how many
 
 Because of timing jitter, we should debounce and/or employ statistics.
 
-See [solution.py](solution.py) for example implementation of such a timing attack.  This can be run from either your local machine or the lab server.
+See [solution.py](solution.py) for example implementation of such a timing attack.  This can be run from either your local machine or the lab server, but it will run more accurately from the lab server since it can make more precise computational measurements locally.
 
 
 ### Password
