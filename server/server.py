@@ -44,7 +44,7 @@ def check_password(password):
         return m.hexdigest() == password_from_file
 
     elif mode == "base64":
-        return base64.b64decode(password) == password_from_file
+        return base64.b64encode(password) == password_from_file
 
     elif mode == "plaintext":
         return password == password_from_file
