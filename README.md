@@ -239,8 +239,6 @@ Run the start script.
 ubuntu@crypto-lab:~$ sudo crypto-lab/start.sh
 ```
 
-When prompted, enter information for your self-signed HTTPS certificate.  Details are yours to specify.
-
 Look for 'Success' message.
 
 **3. Update the distribution for students**
