@@ -7,6 +7,7 @@ import flask_login
 import ssl
 import bcrypt
 import hashlib
+import base64
 import time
 
 
@@ -41,6 +42,9 @@ def check_password(password):
         m = hashlib.md5()
         m.update(password)
         return m.hexdigest() == password_from_file
+
+    elif mode == "base64":
+        return base64.b64decode(password) == password_from_file
 
     elif mode == "plaintext":
         return password == password_from_file
